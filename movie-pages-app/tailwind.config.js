@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     fontSize: {
       xs: '0.75rem',
@@ -23,7 +23,7 @@ export default {
       },
       colors: {
         principal: {
-          100: '#80bfff',
+          100: '#ffffff',
           200: '#3399ff',
           300: '#0080ff',
           400: '#0066cc',
@@ -34,7 +34,7 @@ export default {
           900: '#003366',
         },
         white: '#fff',
-        secondary: '#051626',
+        secondary: '#B537F2',
         terteary: '#F1F8FF',
         black: '#000',
         white: '#fff',
@@ -58,7 +58,7 @@ export default {
           900: '#1a202c',
         },
         blue: {
-          100: '#ebf8ff',
+          100: '#00acc1',
           200: '#bee3f8',
           300: '#90cdf4',
           400: '#63b3ed',
@@ -70,8 +70,8 @@ export default {
           1000: '#051626',
           1111: '#006BD7',
         },
-        red: {
-          1000: '#EB1B1B',
+        purple: {
+          100: '#B537F2',
         },
       },
     },
