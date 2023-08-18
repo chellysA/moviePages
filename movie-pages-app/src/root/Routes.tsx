@@ -1,3 +1,4 @@
+import Home from '../pages/home/Home';
 import { useEffect, useRef } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 
@@ -12,7 +13,9 @@ const Routes: React.FC = () => {
   return (
     <div ref={scrollRef}>
       <Switch>
-        <Route exact path="/"></Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
         <Route exact path="/movies"></Route>
         <Route exact path="/tv-shows"></Route>
       </Switch>

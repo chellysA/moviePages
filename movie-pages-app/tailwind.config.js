@@ -1,30 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    fontSize: {
-      xs: '0.75rem',
-      sm: '0.875rem',
-      base: '1rem',
-      lg: '1.125rem',
-      xl: '1.25rem',
-      '2xl': '1.5rem',
-      '3xl': '1.875rem',
-      '4xl': '2.25rem',
-      '5xl': '3rem',
-      '6xl': '4rem',
-    },
-    fontFamily: {
-      raleway: ['Raleway', 'sans-serif'],
-    },
     extend: {
-      width: {
-        58: '14.375rem',
-      },
       colors: {
         principal: {
-          100: '#ffffff',
-          200: '#3399ff',
+          1: '#00acc1',
+          100: '#000000CC',
+          200: '#00acc1',
           300: '#0080ff',
           400: '#0066cc',
           500: '#006BD7',
@@ -33,17 +16,18 @@ export default {
           800: '#004080',
           900: '#003366',
         },
+
         white: '#fff',
-        secondary: '#B537F2',
         terteary: '#F1F8FF',
         black: '#000',
         white: '#fff',
         secondary: '#051626',
+        blueDark: '#051626',
         terteary: '#F1F8FF',
         black: '#000',
         gray: {
-          50: '#F4F4F4',
-          100: '#f7fafc',
+          50: '#bdc3c7',
+          100: '#bec3c5',
           200: '#edf2f7',
           300: '#e2e8f0',
           350: '#CED4DA',
@@ -58,7 +42,7 @@ export default {
           900: '#1a202c',
         },
         blue: {
-          100: '#00acc1',
+          100: '#ebf8ff',
           200: '#bee3f8',
           300: '#90cdf4',
           400: '#63b3ed',
@@ -67,11 +51,10 @@ export default {
           700: '#2b6cb0',
           800: '#2c5282',
           900: '#2a4365',
-          1000: '#051626',
           1111: '#006BD7',
         },
-        purple: {
-          100: '#B537F2',
+        red: {
+          1000: '#EB1B1B',
         },
       },
     },
