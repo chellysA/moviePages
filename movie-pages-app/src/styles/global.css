@@ -1,7 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+
+@import 'tailwindcss/utilities';
 
 input:focus-visible {
   outline: 0;
+}
+p,
+li {
+  color: #bec3c5;
+}
+#shadow-mask {
+  box-shadow: 7px 9px 126px 62px rgba(0, 0, 0, 0.75) inset;
+  -webkit-box-shadow: 7px 9px 126px 62px rgba(0, 0, 0, 0.75) inset;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 10%,
+    rgba(0, 0, 0, 1) 80%
+  );
 }
