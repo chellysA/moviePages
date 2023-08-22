@@ -1,4 +1,4 @@
-import Home from '../pages/home/Home';
+import Home from '../pages/home';
 import { useEffect, useRef } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 

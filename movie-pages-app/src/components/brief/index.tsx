@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CinemaListing = () => {
+const Brief = () => {
   return (
     <section className="px-8">
       <p>
@@ -22,10 +22,7 @@ const CinemaListing = () => {
         favorite movies and relax and this is what you get. Let's start watching
         Free Full HD Movies Online and Free TV Shows with FMoviesto
       </p>
-      <h3 className="relative text-gray-100 before:absolute before:top-[40px] before:h-[1px] before:w-[50px] before:bg-gray-100">
-        Trending
-      </h3>
     </section>
   );
 };
-export default CinemaListing;
+export default Brief;

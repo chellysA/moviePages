@@ -5,7 +5,6 @@ export default {
     extend: {
       colors: {
         principal: {
-          1: '#00acc1',
           100: '#000000CC',
           200: '#00acc1',
           300: '#0080ff',
@@ -26,7 +25,7 @@ export default {
         terteary: '#F1F8FF',
         black: '#000',
         gray: {
-          50: '#bdc3c7',
+          50: '#d1d1d182',
           100: '#bec3c5',
           200: '#edf2f7',
           300: '#e2e8f0',
@@ -58,6 +57,7 @@ export default {
         },
       },
     },
+
+    plugins: [],
   },
-  plugins: [],
 };

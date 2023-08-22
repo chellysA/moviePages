@@ -22,10 +22,14 @@ const Carousel: React.FC = () => {
         {CarouselImg.map(({ src, alt }, index) => {
           return (
             <div key={index}>
-              <img src={src} alt={alt} className="w-full h-[600px] relative" />
+              <img
+                src={src}
+                alt={alt}
+                className="w-full h-[600px] relative object-cover"
+              />
               <div
                 id="shadow-mask"
-                className="w-full h-full absolute top-0"
+                className="w-full h-full absolute top-0 "
               ></div>
               <MovieDescription />
             </div>
