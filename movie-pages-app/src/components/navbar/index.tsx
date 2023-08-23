@@ -57,8 +57,8 @@ const NavBar: React.FC = () => {
               onClick={() => setShowMenu(false)}
             />
             <StatLink
-              link="/concerts"
-              label="Concerts"
+              link="/coming-soon"
+              label="Comming Soon"
               onClick={() => setShowMenu(false)}
             />
             <StatLink
@@ -82,7 +82,7 @@ const NavBar: React.FC = () => {
             <StatLink link="/" label="Home" />
             <StatLink link="/movies" label="Movies" />
             <StatLink link="/tv-shows" label="TV Shows" />
-            <StatLink link="/concerts" label="Concerts" />
+            <StatLink link="/comming-soon" label="Comming Soon" />
             <StatLink link="/most-watched" label="Most Watched" />
           </ul>
         </div>

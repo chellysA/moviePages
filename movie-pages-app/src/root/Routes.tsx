@@ -2,6 +2,9 @@ import Movies from '../pages/movies';
 import Home from '../pages/home';
 import { useEffect, useRef } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
+import TVShows from '../pages/tv-shows';
+import MostWatched from '../pages/most-watched';
+import CommingSoon from '../pages/comming-soon';
 
 const Routes: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -20,7 +23,15 @@ const Routes: React.FC = () => {
         <Route exact path="/movies">
           <Movies />
         </Route>
-        <Route exact path="/tv-shows"></Route>
+        <Route exact path="/tv-shows">
+          <TVShows />
+        </Route>
+        <Route exact path="/comming-soon">
+          <CommingSoon />
+        </Route>
+        <Route exact path="/most-watched">
+          <MostWatched />
+        </Route>
       </Switch>
     </div>
   );

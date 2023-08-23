@@ -6,6 +6,7 @@ import Section from '../../components/section';
 import Button from '../../components/button';
 import { BsFillPlayFill } from 'react-icons/bs';
 import FilmPosters from '../../components/filmPosters';
+import Pagination from '../../components/pagination';
 
 const Home: React.FC = () => {
   return (
@@ -34,6 +35,7 @@ const Home: React.FC = () => {
           <FilmPosters />
         </div>
       </Section>
+      <Pagination />
     </>
   );
 };
