@@ -23,7 +23,7 @@ const Carousel: React.FC = () => {
           return (
             <div key={index}>
               <img
-                src={src}
+                src={`https://picsum.photos/id/${index}/1240/500`}
                 alt={alt}
                 className="w-full h-[600px] relative object-cover"
               />

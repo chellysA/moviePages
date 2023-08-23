@@ -37,7 +37,7 @@ const Footer = () => {
               href="https://www.linkedin.com/in/chellys-castillo"
               className="no-underline text-[13px] text-principal-200 hover:text-gray-100"
             >
-              Connect with me on Linkdlin
+              Connect with me on Linkedin
             </a>
           </div>
         </div>
