@@ -96,7 +96,7 @@ const NavBar: React.FC = () => {
           <input
             type="text"
             placeholder="Enter keywords..."
-            className="border-none bg-transparent text-white text-[14px]"
+            className="border-none bg-transparent text-white w-full text-[14px]"
           />
         </div>
       </nav>

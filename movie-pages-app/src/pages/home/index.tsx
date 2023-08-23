@@ -7,7 +7,7 @@ import Button from '../../components/button';
 import { BsFillPlayFill } from 'react-icons/bs';
 import FilmPosters from '../../components/filmPosters';
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <>
       <Carousel />

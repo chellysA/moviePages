@@ -25,6 +25,7 @@ export default {
         terteary: '#F1F8FF',
         black: '#000',
         gray: {
+          10: '#212529',
           50: '#d1d1d182',
           100: '#bec3c5',
           200: '#edf2f7',

@@ -1,3 +1,4 @@
+import Movies from '../pages/movies';
 import Home from '../pages/home';
 import { useEffect, useRef } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
@@ -16,7 +17,9 @@ const Routes: React.FC = () => {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/movies"></Route>
+        <Route exact path="/movies">
+          <Movies />
+        </Route>
         <Route exact path="/tv-shows"></Route>
       </Switch>
     </div>
