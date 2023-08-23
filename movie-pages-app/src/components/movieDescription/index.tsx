@@ -9,7 +9,7 @@ const MovieDescription = () => {
       <div></div>
       <p></p>
       <Button
-        icon={<BsFillPlayFill className="h-[30px] w-[30px] pb-2" />}
+        icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
         label="Whatch now"
         border={true}
       />

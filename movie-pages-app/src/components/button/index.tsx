@@ -12,10 +12,10 @@ const Button = ({ icon, label, bg, border }: IButtonProps) => {
     <>
       <button
         className={`flex ${
-          bg && `bg-white`
-        }items-center text-principal-200 font-[15px] ${
-          border && `border border-principal-100`
-        } pl-2 pr-3 py-1 rounded-full`}
+          bg && `bg-principal-200`
+        } items-center py-1 text-principal-200 font-[15px] ${
+          border && `border border-principal-200`
+        } pl-3 pr-4 pt-1 rounded-full hover:opacity-50 z-1`}
       >
         {icon}
         {label}
