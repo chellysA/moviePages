@@ -3,7 +3,8 @@ import FilmPostersImg from '../../constants/FilmPostersImg';
 import { AiFillStar } from 'react-icons/ai';
 import Button from '../button';
 import { BsFillPlayFill } from 'react-icons/bs';
-const FilmPosters = () => {
+
+const FilmPosters: React.FC = () => {
   return (
     <div className="flex flex-wrap justify-center md:justify-start">
       {FilmPostersImg.map(

@@ -20,10 +20,10 @@ const StatLink = ({ link, label }: IStatLink) => {
 const Footer = () => {
   return (
     <>
-      <div className="w-full h-[300px] flex p-4">
-        <div className="w-2/4 mr-14">
+      <div className="w-full h-max flex p-4">
+        <div className="w-3/4 md:mr-14">
           <img src={logo} alt="" className="w-[100px] h-[40px] my-4"></img>
-          <p>
+          <p className=" h-[130px] overflow-hidden">
             FMovies is the best free streaming site 2023, where you can watch
             movies online for free, no registration required. With a large
             database and great features, we're confident that FMovies is the
@@ -35,13 +35,13 @@ const Footer = () => {
             <FaLinkedin className="w-[20px] h-[20px] text-white mr-2" />
             <a
               href="https://www.linkedin.com/in/chellys-castillo"
-              className="no-underline text-[15px] text-gray-200 hover:text-principal-200"
+              className="no-underline text-[13px] text-principal-200 hover:text-gray-100"
             >
               Connect with me on Linkdlin
             </a>
           </div>
         </div>
-        <div className="ml-14">
+        <div className="ml-8 md:ml-14">
           <p className="text-white font-bold mt-4">Links</p>
           <StatLink link="/movies" label="Movies" />
           <StatLink link="/tv-shows" label="Tv Shows" />
