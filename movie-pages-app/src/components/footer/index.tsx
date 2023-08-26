@@ -27,9 +27,10 @@ const Footer = () => {
             FMovies is the best free streaming site 2023, where you can watch
             movies online for free, no registration required. With a large
             database and great features, we're confident that FMovies is the
-            best free online movie site in the space you just can't miss!
-            <hr></hr>
-            This page is building as a practice for me to learn axios.
+            best free online movie site in the space you just can't miss!{' '}
+            <span>
+              This page is building as a practice for me to learn axios.
+            </span>
           </p>
           <div className="flex">
             <FaLinkedin className="w-[20px] h-[20px] text-white mr-2" />
