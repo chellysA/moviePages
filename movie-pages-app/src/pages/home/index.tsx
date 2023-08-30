@@ -9,9 +9,11 @@ import FilmPosters from '../../components/filmPosters';
 import Pagination from '../../components/pagination';
 import useGetMovies from '../../hooks/api/useGetMovies';
 import { IFilmPosterProps } from '../../components/filmPosters';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 const Home: React.FC = () => {
   const { getMovies, movies } = useGetMovies();
+  const moviesInfo = useSelector((state) => state);
 
   const URL_POSTER = 'https://image.tmdb.org/t/p/original';
 
@@ -19,6 +21,9 @@ const Home: React.FC = () => {
     getMovies();
   }, []);
 
+  useEffect(() => {
+    console.log(moviesInfo);
+  }, [moviesInfo]);
   return (
     <>
       <Carousel />

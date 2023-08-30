@@ -6,7 +6,7 @@ import './styles/global.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Footer from './components/footer/index.tsx';
 import { Provider } from 'react-redux';
-import store from './store.ts';
+import { store } from './redux/store.ts';
 
 function App() {
   return (
