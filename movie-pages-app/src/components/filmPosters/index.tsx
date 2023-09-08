@@ -33,7 +33,7 @@ const FilmPosters = ({
   return (
     <>
       <div
-        className="relative w-[200px] h-[300px] mb-[98px] mx-2"
+        className="relative w-[200px] h-[300px] mb-[120px] mx-6"
         onMouseEnter={() => setShowMovieDescrip(true)}
         onMouseLeave={() => setShowMovieDescrip(false)}
       >

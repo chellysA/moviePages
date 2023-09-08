@@ -10,20 +10,23 @@ import Pagination from '../../components/pagination';
 import useGetMovies from '../../hooks/api/useGetMovies';
 import { IFilmPosterProps } from '../../components/filmPosters';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
+import useGetGenre from '../../hooks/api/useGetGenre';
 
 const Home: React.FC = () => {
-  const { getMovies, movies } = useGetMovies();
-  const moviesInfo = useSelector((state) => state);
+  const { getMovies } = useGetMovies();
+  const { getGenre } = useGetGenre();
+  const { movies, genres } = useSelector<any, any>((state) => state.movies);
 
   const URL_POSTER = 'https://image.tmdb.org/t/p/original';
 
   useEffect(() => {
-    getMovies();
+    console.log(movies);
+    if (movies) {
+      getMovies();
+      getGenre();
+    }
   }, []);
 
-  useEffect(() => {
-    console.log(moviesInfo);
-  }, [moviesInfo]);
   return (
     <>
       <Carousel />
@@ -57,6 +60,7 @@ const Home: React.FC = () => {
                   overview,
                   release_date,
                   vote_average,
+                  genre_ids,
                 }: IFilmPosterProps,
                 index: any
               ) => (
@@ -68,6 +72,11 @@ const Home: React.FC = () => {
                   release_date={release_date && release_date.slice(0, 4)}
                   vote_average={vote_average}
                   filmType="Movies"
+                  genre_ids={
+                    genres.filter((e: any) => {
+                      return e.id === genre_ids?.slice(0, 1)[0];
+                    })[0].name
+                  }
                 />
               )
             )}
