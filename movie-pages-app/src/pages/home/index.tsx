@@ -1,32 +1,34 @@
 import Subtitle from '../../components/subtitle';
 import Brief from '../../components/brief';
 import Carousel from '../../components/carousel';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Section from '../../components/section';
 import Button from '../../components/button';
 import { BsFillPlayFill } from 'react-icons/bs';
 import FilmPosters from '../../components/filmPosters';
-import Pagination from '../../components/pagination';
 import useGetMovies from '../../hooks/api/useGetMovies';
 import { IFilmPosterProps } from '../../components/filmPosters';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import useGetGenre from '../../hooks/api/useGetGenre';
+import Pager from '../../components/pager';
 
 const Home: React.FC = () => {
   const { getMovies } = useGetMovies();
   const { getGenre } = useGetGenre();
-  const { movies, genres } = useSelector<any, any>((state) => state.movies);
+  const { movies, genres, totalPages, actualPage } = useSelector<any, any>(
+    (state) => state.movies
+  );
+  // const [isClicked] = useState(false);
 
   const URL_POSTER = 'https://image.tmdb.org/t/p/original';
 
   useEffect(() => {
-    console.log(movies);
     if (movies) {
       getMovies();
       getGenre();
     }
   }, []);
-
+  console.log(movies);
   return (
     <>
       <Carousel />
@@ -52,6 +54,7 @@ const Home: React.FC = () => {
       <Section>
         <div className="container flex flex-wrap justify-center md:justify-start">
           {movies?.length &&
+            genres?.length &&
             movies.map(
               (
                 {
@@ -71,7 +74,7 @@ const Home: React.FC = () => {
                   overview={overview}
                   release_date={release_date && release_date.slice(0, 4)}
                   vote_average={vote_average}
-                  filmType="Movies"
+                  filmType="Movie"
                   genre_ids={
                     genres.filter((e: any) => {
                       return e.id === genre_ids?.slice(0, 1)[0];
@@ -82,7 +85,7 @@ const Home: React.FC = () => {
             )}
         </div>
       </Section>
-      <Pagination />
+      <Pager actualPages={actualPage} totalPages={totalPages} />
     </>
   );
 };

@@ -3,6 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   movies: [],
   genres: [],
+  id: 0,
+  details: [],
+  totalPages: 0,
+  actualPage: 1,
 };
 
 export const moviesSlice = createSlice({
@@ -16,8 +20,27 @@ export const moviesSlice = createSlice({
     addGenres: (state, action) => {
       state.genres = action.payload;
     },
+    addId: (state, action) => {
+      state.id = action.payload;
+    },
+    addDetails: (state, action) => {
+      state.details = action.payload;
+    },
+    addTotalPages: (state, action) => {
+      state.totalPages = action.payload;
+    },
+    addPage: (state, action) => {
+      state.actualPage = action.payload;
+    },
   },
 });
 
-export const { addMovies, addGenres } = moviesSlice.actions;
+export const {
+  addMovies,
+  addGenres,
+  addId,
+  addDetails,
+  addTotalPages,
+  addPage,
+} = moviesSlice.actions;
 export default moviesSlice.reducer;
