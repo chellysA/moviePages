@@ -5,6 +5,8 @@ const initialState = {
   genres: [],
   id: 0,
   details: [],
+  totalPages: 0,
+  actualPage: 1,
 };
 
 export const moviesSlice = createSlice({
@@ -24,8 +26,21 @@ export const moviesSlice = createSlice({
     addDetails: (state, action) => {
       state.details = action.payload;
     },
+    addTotalPages: (state, action) => {
+      state.totalPages = action.payload;
+    },
+    addPage: (state, action) => {
+      state.actualPage = action.payload;
+    },
   },
 });
 
-export const { addMovies, addGenres, addId, addDetails } = moviesSlice.actions;
+export const {
+  addMovies,
+  addGenres,
+  addId,
+  addDetails,
+  addTotalPages,
+  addPage,
+} = moviesSlice.actions;
 export default moviesSlice.reducer;

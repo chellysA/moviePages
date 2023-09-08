@@ -63,7 +63,7 @@ const FilmPosters = ({
         <p className="text-gray-100 truncate py-2 m-0">{original_title}</p>
         <div className="flex justify-around">
           <p className="text-gray-50 text-[15px]">{release_date}</p>
-          <div className="w-[5px] h-[5px] bg-gray-100 rounded-md mt-2"></div>
+          <div className="w-[5px] h-[5px] bg-gray-100 rounded-md mt-2 mx-1"></div>
           <p className="text-[15px]">{genre_ids}</p>
           <div>
             <p className="text-gray-50 text-[13px] border px-1 rounded-md ml-4">
