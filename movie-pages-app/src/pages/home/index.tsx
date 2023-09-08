@@ -13,14 +13,13 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import useGetGenre from '../../hooks/api/useGetGenre';
 
 const Home: React.FC = () => {
-  const { getMovies } = useGetMovies();
+  const { getMovies } = useGetMovies({ page: 93 });
   const { getGenre } = useGetGenre();
   const { movies, genres } = useSelector<any, any>((state) => state.movies);
 
   const URL_POSTER = 'https://image.tmdb.org/t/p/original';
 
   useEffect(() => {
-    console.log(movies);
     if (movies) {
       getMovies();
       getGenre();
@@ -52,6 +51,7 @@ const Home: React.FC = () => {
       <Section>
         <div className="container flex flex-wrap justify-center md:justify-start">
           {movies?.length &&
+            genres?.length &&
             movies.map(
               (
                 {
@@ -71,7 +71,7 @@ const Home: React.FC = () => {
                   overview={overview}
                   release_date={release_date && release_date.slice(0, 4)}
                   vote_average={vote_average}
-                  filmType="Movies"
+                  filmType="Movie"
                   genre_ids={
                     genres.filter((e: any) => {
                       return e.id === genre_ids?.slice(0, 1)[0];

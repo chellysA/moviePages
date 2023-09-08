@@ -6,12 +6,10 @@ import { BsFillPlayFill } from 'react-icons/bs';
 export interface IFilmPosterProps {
   overview?: string;
   quality?: string;
-  country?: string;
   release_date?: string;
   genre_ids?: string;
   vote_average?: number;
   original_title?: string;
-  filmDuration?: number;
   filmType?: string;
   poster_path?: string;
 }
@@ -19,12 +17,10 @@ export interface IFilmPosterProps {
 const FilmPosters = ({
   overview,
   quality,
-  country,
   release_date,
   genre_ids,
   vote_average,
   original_title,
-  filmDuration,
   filmType,
   poster_path,
 }: IFilmPosterProps) => {
@@ -39,13 +35,9 @@ const FilmPosters = ({
       >
         {showMovieDescrip && (
           <div className="absolute bottom-[-65px] w-full h-5/6 bg-black">
-            <p className="text-gray-100 text-[14px] h-[150px] pb-1 overflow-hidden">
+            <p className="text-gray-100 text-[14px] h-[185px] overflow-hidden">
               {overview}
             </p>
-            <div>
-              <p className="text-[13px] m-0">Country: {country}</p>
-              <p className="text-[13px] m-0">Genre: {genre_ids}</p>
-            </div>
             <div className="flex justify-start mb-1">
               <AiFillStar className="text-principal-200 mb-1" />
               <p className="text-[13px] text-white m-0">{vote_average}</p>
@@ -72,7 +64,7 @@ const FilmPosters = ({
         <div className="flex justify-around">
           <p className="text-gray-50 text-[15px]">{release_date}</p>
           <div className="w-[5px] h-[5px] bg-gray-100 rounded-md mt-2"></div>
-          <p className="text-gray-50 text-[15px]">{filmDuration}</p>
+          <p className="text-[15px]">{genre_ids}</p>
           <div>
             <p className="text-gray-50 text-[13px] border px-1 rounded-md ml-4">
               {filmType}
