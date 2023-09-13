@@ -29,7 +29,7 @@ export const moviesSlice = createSlice({
     addTotalPages: (state, action) => {
       state.totalPages = action.payload;
     },
-    addPage: (state, action) => {
+    addActualPage: (state, action) => {
       state.actualPage = action.payload;
     },
   },
@@ -41,6 +41,6 @@ export const {
   addId,
   addDetails,
   addTotalPages,
-  addPage,
+  addActualPage,
 } = moviesSlice.actions;
 export default moviesSlice.reducer;

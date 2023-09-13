@@ -1,7 +1,7 @@
 import Subtitle from '../../components/subtitle';
 import Brief from '../../components/brief';
 import Carousel from '../../components/carousel';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Section from '../../components/section';
 import Button from '../../components/button';
 import { BsFillPlayFill } from 'react-icons/bs';
@@ -11,24 +11,37 @@ import { IFilmPosterProps } from '../../components/filmPosters';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import useGetGenre from '../../hooks/api/useGetGenre';
 import Pager from '../../components/pager';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addActualPage } from '../../redux/moviesSlice';
 
 const Home: React.FC = () => {
-  const { getMovies } = useGetMovies();
+  const { search } = useLocation();
+  const { getMovies } = useGetMovies(search.slice(-1));
   const { getGenre } = useGetGenre();
   const { movies, genres, totalPages, actualPage } = useSelector<any, any>(
     (state) => state.movies
   );
-  // const [isClicked] = useState(false);
-
+  const history = useHistory();
   const URL_POSTER = 'https://image.tmdb.org/t/p/original';
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (movies) {
       getMovies();
       getGenre();
     }
-  }, []);
-  console.log(movies);
+  });
+
+  const handlePage = (newPage: number | boolean) => {
+    const newLocation = {
+      pathname: '/',
+      search: `?page=${newPage}`,
+    };
+    history.push(newLocation);
+    dispatch(addActualPage(newPage));
+  };
+
   return (
     <>
       <Carousel />
@@ -52,7 +65,7 @@ const Home: React.FC = () => {
         </div>
       </Section>
       <Section>
-        <div className="container flex flex-wrap justify-center md:justify-start">
+        <div className="flex flex-wrap justify-center">
           {movies?.length &&
             genres?.length &&
             movies.map(
@@ -85,7 +98,11 @@ const Home: React.FC = () => {
             )}
         </div>
       </Section>
-      <Pager actualPages={actualPage} totalPages={totalPages} />
+      <Pager
+        actualPages={actualPage}
+        totalPages={totalPages}
+        onClick={handlePage}
+      />
     </>
   );
 };

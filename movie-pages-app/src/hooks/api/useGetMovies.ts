@@ -1,14 +1,16 @@
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { addMovies, addPage, addTotalPages } from '../../redux/moviesSlice';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import {
+  addMovies,
+  addActualPage,
+  addTotalPages,
+} from '../../redux/moviesSlice';
 
 const API_URL = 'https://api.themoviedb.org/3';
 const API_KEY = '0b97a531d5627d04bf68076ad1254c21';
 
-const useGetMovies = () => {
+const useGetMovies = (actualPage: string | null) => {
   const dispatch = useDispatch();
-  const { actualPage } = useSelector<any, any>((state) => state.movies);
 
   const getMovies = async () => {
     const {
@@ -21,7 +23,7 @@ const useGetMovies = () => {
         },
       }
     );
-    dispatch(addPage(page));
+    dispatch(addActualPage(page));
     dispatch(addTotalPages(total_pages));
     dispatch(addMovies(results));
   };
