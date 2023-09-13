@@ -1,7 +1,7 @@
 import Subtitle from '../../components/subtitle';
 import Brief from '../../components/brief';
 import Carousel from '../../components/carousel';
-import React, { useDeferredValue, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Section from '../../components/section';
 import Button from '../../components/button';
 import { BsFillPlayFill } from 'react-icons/bs';
@@ -11,30 +11,29 @@ import { IFilmPosterProps } from '../../components/filmPosters';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import useGetGenre from '../../hooks/api/useGetGenre';
 import Pager from '../../components/pager';
-import useQueryParams from '../../hooks/useQueryParams';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addActualPage } from '../../redux/moviesSlice';
 
 const Home: React.FC = () => {
-  const { getMovies } = useGetMovies();
+  const { search } = useLocation();
+  const { getMovies } = useGetMovies(search.slice(-1));
   const { getGenre } = useGetGenre();
   const { movies, genres, totalPages, actualPage } = useSelector<any, any>(
     (state) => state.movies
   );
-  //const query = useQueryParams();
   const history = useHistory();
   const URL_POSTER = 'https://image.tmdb.org/t/p/original';
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (movies) {
       getMovies();
       getGenre();
     }
-  }, []);
+  });
 
   const handlePage = (newPage: number | boolean) => {
-    console.log(newPage);
     const newLocation = {
       pathname: '/',
       search: `?page=${newPage}`,
@@ -43,7 +42,6 @@ const Home: React.FC = () => {
     dispatch(addActualPage(newPage));
   };
 
-  console.log(actualPage);
   return (
     <>
       <Carousel />
@@ -100,7 +98,11 @@ const Home: React.FC = () => {
             )}
         </div>
       </Section>
-      <Pager actualPages={actualPage} totalPages={10} onClick={handlePage} />
+      <Pager
+        actualPages={actualPage}
+        totalPages={totalPages}
+        onClick={handlePage}
+      />
     </>
   );
 };
