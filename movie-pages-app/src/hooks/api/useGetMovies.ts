@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { addMovies, addPage, addTotalPages } from '../../redux/moviesSlice';
+import {
+  addMovies,
+  addActualPage,
+  addTotalPages,
+} from '../../redux/moviesSlice';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 const API_URL = 'https://api.themoviedb.org/3';
@@ -21,7 +25,7 @@ const useGetMovies = () => {
         },
       }
     );
-    dispatch(addPage(page));
+    dispatch(addActualPage(page));
     dispatch(addTotalPages(total_pages));
     dispatch(addMovies(results));
   };
