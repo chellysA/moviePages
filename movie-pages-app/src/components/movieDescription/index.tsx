@@ -1,7 +1,7 @@
-import React from 'react';
 import Button from '../button';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { IFilmPosterProps } from '../filmPosters';
+import { Link } from 'react-router-dom';
 
 const MovieDescription = ({
   original_title,
@@ -9,6 +9,7 @@ const MovieDescription = ({
   vote_average,
   release_date,
   genre_ids,
+  id,
 }: IFilmPosterProps) => {
   return (
     <div className="absolute bottom-[70px] px-8">
@@ -19,11 +20,13 @@ const MovieDescription = ({
         <p className="pr-2">Genre: {genre_ids} </p>
       </div>
       <p className="text-gray-50 w-3/4 mb-4">{overview}</p>
-      <Button
-        icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
-        label="Whatch now"
-        border={true}
-      />
+      <Link to={`/movie/${id}`} className="no-underline">
+        <Button
+          icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
+          label="Whatch now"
+          border={true}
+        />
+      </Link>
     </div>
   );
 };

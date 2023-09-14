@@ -81,6 +81,7 @@ const Home: React.FC = () => {
                   release_date,
                   vote_average,
                   genre_ids,
+                  id,
                 }: IFilmPosterProps,
                 index: any
               ) => (
@@ -99,6 +100,7 @@ const Home: React.FC = () => {
                       return e.id === genre_ids[0];
                     })[0].name
                   }
+                  id={id}
                 />
               )
             )}

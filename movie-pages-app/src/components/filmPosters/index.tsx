@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import Button from '../button';
 import { BsFillPlayFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 export interface IFilmPosterProps {
   overview?: string;
@@ -13,6 +14,7 @@ export interface IFilmPosterProps {
   filmType?: string;
   poster_path?: string;
   backdrop_path?: string;
+  id: number;
 }
 
 const FilmPosters = ({
@@ -24,9 +26,9 @@ const FilmPosters = ({
   original_title,
   filmType,
   poster_path,
+  id,
 }: IFilmPosterProps) => {
   const [showMovieDescrip, setShowMovieDescrip] = useState(false);
-
   return (
     <>
       <div
@@ -44,11 +46,13 @@ const FilmPosters = ({
               <p className="text-[13px] text-white m-0">{vote_average}</p>
             </div>
             <div className="flex justify-center">
-              <Button
-                icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
-                label="Whatch now"
-                border={true}
-              />
+              <Link to={`/movie/${id}`} className="no-underline">
+                <Button
+                  icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
+                  label="Whatch now"
+                  border={true}
+                />
+              </Link>
             </div>
           </div>
         )}
