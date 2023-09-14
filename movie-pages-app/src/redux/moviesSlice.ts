@@ -4,7 +4,7 @@ const initialState = {
   movies: [],
   genres: [],
   id: 0,
-  details: [],
+  backdrops: [],
   totalPages: 0,
   actualPage: 1,
 };
@@ -23,8 +23,8 @@ export const moviesSlice = createSlice({
     addId: (state, action) => {
       state.id = action.payload;
     },
-    addDetails: (state, action) => {
-      state.details = action.payload;
+    addBackdrops: (state, action) => {
+      state.backdrops = action.payload;
     },
     addTotalPages: (state, action) => {
       state.totalPages = action.payload;
@@ -39,7 +39,7 @@ export const {
   addMovies,
   addGenres,
   addId,
-  addDetails,
+  addBackdrops,
   addTotalPages,
   addActualPage,
 } = moviesSlice.actions;

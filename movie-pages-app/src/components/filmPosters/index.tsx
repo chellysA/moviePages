@@ -12,6 +12,7 @@ export interface IFilmPosterProps {
   original_title?: string;
   filmType?: string;
   poster_path?: string;
+  backdrop_path?: string;
 }
 
 const FilmPosters = ({

@@ -11,13 +11,15 @@ import { IFilmPosterProps } from '../../components/filmPosters';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import useGetGenre from '../../hooks/api/useGetGenre';
 import Pager from '../../components/pager';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addActualPage } from '../../redux/moviesSlice';
+import useQueryParams from '../../hooks/useQueryParams';
 
 const Home: React.FC = () => {
-  const { search } = useLocation();
-  const { getMovies } = useGetMovies(search.slice(-1));
+  const queries = useQueryParams();
+  const page = queries.get('page');
+  const { getMovies } = useGetMovies(page ?? '1');
   const { getGenre } = useGetGenre();
   const { movies, genres, totalPages, actualPage } = useSelector<any, any>(
     (state) => state.movies
@@ -28,10 +30,13 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     if (movies) {
-      getMovies();
       getGenre();
     }
-  });
+  }, []);
+
+  useEffect(() => {
+    getMovies();
+  }, [page]);
 
   const handlePage = (newPage: number | boolean) => {
     const newLocation = {
@@ -41,7 +46,6 @@ const Home: React.FC = () => {
     history.push(newLocation);
     dispatch(addActualPage(newPage));
   };
-
   return (
     <>
       <Carousel />
@@ -89,8 +93,10 @@ const Home: React.FC = () => {
                   vote_average={vote_average}
                   filmType="Movie"
                   genre_ids={
+                    genres?.length &&
+                    genre_ids?.length &&
                     genres.filter((e: any) => {
-                      return e.id === genre_ids?.slice(0, 1)[0];
+                      return e.id === genre_ids[0];
                     })[0].name
                   }
                 />
