@@ -12,7 +12,7 @@ const Carousel: React.FC = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 500,
+    autoplaySpeed: 5000,
     fade: true,
     cssEase: 'linear',
     arrows: false,
@@ -32,6 +32,7 @@ const Carousel: React.FC = () => {
               vote_average,
               release_date,
               genre_ids,
+              id,
             }: IFilmPosterProps,
             index: any
           ) => {
@@ -58,6 +59,7 @@ const Carousel: React.FC = () => {
                       return e.id === genre_ids[0];
                     })[0].name
                   }
+                  id={id}
                 />
               </div>
             );

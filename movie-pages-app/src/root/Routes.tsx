@@ -5,6 +5,7 @@ import { Route, Switch, useLocation } from 'react-router-dom';
 import TVShows from '../pages/tv-shows';
 import MostWatched from '../pages/most-watched';
 import CommingSoon from '../pages/comming-soon';
+import Overview from '../pages/overview';
 
 const Routes: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -31,6 +32,9 @@ const Routes: React.FC = () => {
         </Route>
         <Route exact path="/most-watched">
           <MostWatched />
+        </Route>
+        <Route exact path="/movie/:id">
+          <Overview />
         </Route>
       </Switch>
     </div>
