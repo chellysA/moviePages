@@ -11,9 +11,8 @@ const Carousel: React.FC = () => {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    fade: true,
+    autoplay: false,
+    autoplaySpeed: 1000,
     cssEase: 'linear',
     arrows: false,
   };
@@ -22,7 +21,7 @@ const Carousel: React.FC = () => {
 
   return (
     <div>
-      <Slider {...settings}>
+      <Slider {...settings} className="mb-8">
         {movies?.map(
           (
             {
@@ -33,34 +32,38 @@ const Carousel: React.FC = () => {
               release_date,
               genre_ids,
               id,
+              poster_path,
             }: IFilmPosterProps,
             index: any
           ) => {
             return (
               <div key={index}>
-                <img
-                  src={`${URL_POSTER + backdrop_path}`}
-                  alt=""
-                  className="w-full h-[650px] object-cover"
-                />
                 <div
-                  id="shadow-mask"
-                  className="w-full h-full absolute top-0 "
-                ></div>
-                <MovieDescription
-                  original_title={original_title}
-                  overview={overview}
-                  vote_average={vote_average}
-                  release_date={release_date}
-                  genre_ids={
-                    genres?.length &&
-                    genre_ids?.length &&
-                    genres.filter((e: any) => {
-                      return e.id === genre_ids[0];
-                    })[0].name
-                  }
-                  id={id}
-                />
+                  style={{
+                    backgroundImage: `url(${URL_POSTER + backdrop_path})`,
+                  }}
+                  className="w-full h-[98vh] md:h-[650px] bg-cover bg-no-repeat bg-center "
+                >
+                  <div
+                    id="shadow-mask"
+                    className="w-full h-full md:h-[101%] relative bottom-[0px] pb-2 flex items-end"
+                  >
+                    <MovieDescription
+                      original_title={original_title}
+                      overview={overview}
+                      vote_average={vote_average}
+                      release_date={release_date}
+                      genre_ids={
+                        genres?.length &&
+                        genre_ids?.length &&
+                        genres.filter((e: any) => {
+                          return e.id === genre_ids[0];
+                        })[0].name
+                      }
+                      id={id}
+                    />
+                  </div>
+                </div>
               </div>
             );
           }
