@@ -2,9 +2,9 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import MovieDescription from '../movieDescription';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { IFilmPosterProps } from '../filmPosters';
+import MovieDescription from '../movieDescription';
 
 const Carousel: React.FC = () => {
   const settings = {
@@ -23,7 +23,7 @@ const Carousel: React.FC = () => {
   return (
     <div>
       <Slider {...settings}>
-        {movies.map(
+        {movies?.map(
           (
             {
               backdrop_path,
