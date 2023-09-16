@@ -7,6 +7,8 @@ const initialState = {
   videos: [],
   totalPages: 0,
   actualPage: 1,
+  details: [],
+  credits: [],
 };
 
 export const moviesSlice = createSlice({
@@ -32,6 +34,12 @@ export const moviesSlice = createSlice({
     addActualPage: (state, action) => {
       state.actualPage = action.payload;
     },
+    addDetails: (state, action) => {
+      state.details = action.payload;
+    },
+    addCredits: (state, action) => {
+      state.credits = action.payload;
+    },
   },
 });
 
@@ -42,5 +50,7 @@ export const {
   addVideos,
   addTotalPages,
   addActualPage,
+  addDetails,
+  addCredits,
 } = moviesSlice.actions;
 export default moviesSlice.reducer;
