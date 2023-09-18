@@ -1,11 +1,11 @@
-import Movies from '../pages/movies';
-import Home from '../pages/home';
+import Movies from '../pages/Movies';
+import Home from '../pages/Home';
 import { useEffect, useRef } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
-import TVShows from '../pages/tv-shows';
-import MostWatched from '../pages/most-watched';
-import CommingSoon from '../pages/comming-soon';
-import Overview from '../pages/overview';
+import TVShows from '../pages/TvShows';
+import MostWatched from '../pages/MostWatched';
+import CommingSoon from '../pages/CommingSoon';
+import Overview from '../pages/Overview';
 
 const Routes: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);

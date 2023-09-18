@@ -1,10 +1,10 @@
 import Routes from './root/Routes.tsx';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import NavBar from './components/navbar';
+import NavBar from './components/NavBar/index.tsx';
 import './styles/global.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import Footer from './components/footer/index.tsx';
+import Footer from './components/Footer/index.tsx';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.ts';
 

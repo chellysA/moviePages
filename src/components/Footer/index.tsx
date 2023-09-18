@@ -44,6 +44,7 @@ const Footer = () => {
         </div>
         <div className="ml-8 md:ml-14">
           <p className="text-white font-bold mt-4">Links</p>
+          <StatLink link="/" label="Home" />
           <StatLink link="/movies" label="Movies" />
           <StatLink link="/tv-shows" label="Tv Shows" />
           <StatLink link="/most-watched" label="Most Watched" />

@@ -3,26 +3,28 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { IFilmPosterProps } from '../filmPosters';
-import MovieDescription from '../movieDescription';
+import { IFilmPosterProps } from '../FilmPosters';
+import MovieDescription from '../MovieDescription';
+import env from '../../constants/Enviroments';
 
 const Carousel: React.FC = () => {
   const settings = {
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 1000,
+    autoplay: true,
+    autoplaySpeed: 10000,
     cssEase: 'linear',
     arrows: false,
   };
-  const URL_POSTER = 'https://image.tmdb.org/t/p/original'; // TODO Debe estar en env
-  const { movies, genres } = useSelector<any, any>((state) => state.movies);
 
+  const { nowPlaying, genres } = useSelector<any, any>(
+    (state) => state.nowPlaying
+  );
   return (
     <div>
       <Slider {...settings} className="mb-8">
-        {movies?.map(
+        {nowPlaying?.map(
           (
             {
               backdrop_path,
@@ -40,7 +42,7 @@ const Carousel: React.FC = () => {
               <div key={index}>
                 <div
                   style={{
-                    backgroundImage: `url(${URL_POSTER + backdrop_path})`,
+                    backgroundImage: `url(${env.URL_POSTER + backdrop_path})`,
                   }}
                   className="w-full h-[98vh] md:h-[650px] bg-cover bg-no-repeat bg-center "
                 >
@@ -52,7 +54,7 @@ const Carousel: React.FC = () => {
                       original_title={original_title}
                       overview={overview}
                       vote_average={vote_average}
-                      release_date={release_date}
+                      release_date={release_date?.slice(0, 4)}
                       genre_ids={
                         genres?.length &&
                         genre_ids?.length &&

@@ -1,4 +1,4 @@
-import { addGenres } from '../../redux/moviesSlice';
+import { addGenres } from '../../redux/nowPlayingSlice';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 

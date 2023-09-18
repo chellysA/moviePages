@@ -31,7 +31,9 @@
     "noEmit": true,
     "isolatedModules": true,
     "incremental": true,
+    "types": ["node", "vite/client"],
     "baseUrl": ".",
+
     "paths": {
       "@/*": ["./src/*"],
       "@/public/*": ["./public/*"]
