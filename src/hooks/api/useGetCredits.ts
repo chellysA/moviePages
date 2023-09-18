@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { addCredits } from '../../redux/moviesSlice';
-
-const API_URL = 'https://api.themoviedb.org/3'; // TODO Agregar a variables de entorno
-const API_KEY = '0b97a531d5627d04bf68076ad1254c21'; // TODO Agregar a variables de entorno
+import { addCredits } from '../../redux/nowPlayingSlice';
+import env from '../../constants/Enviroments';
 
 const useGetCredits = (movieId: string | null) => {
   const dispatch = useDispatch();
@@ -11,11 +9,14 @@ const useGetCredits = (movieId: string | null) => {
   const getCredits = async () => {
     const {
       data: { cast },
-    } = await axios.get(`${API_URL}/movie/${movieId}/credits?language=en-US`, {
-      params: {
-        api_key: API_KEY,
-      },
-    });
+    } = await axios.get(
+      `${env.API_URL}/movie/${movieId}/credits?language=en-US`,
+      {
+        params: {
+          api_key: env.API_KEY,
+        },
+      }
+    );
     dispatch(addCredits(cast));
   };
   return { getCredits };

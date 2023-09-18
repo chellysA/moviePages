@@ -1,41 +1,41 @@
-import Subtitle from '../../components/subtitle';
-import Brief from '../../components/brief';
-import Carousel from '../../components/carousel';
+import Subtitle from '../../components/Subtitle';
+import Brief from '../../components/Brief';
+import Carousel from '../../components/Carousel';
 import React, { useEffect } from 'react';
-import Section from '../../components/section';
-import Button from '../../components/button';
+import Section from '../../components/Section';
+import Button from '../../components/Button';
 import { BsFillPlayFill } from 'react-icons/bs';
-import FilmPosters from '../../components/filmPosters';
-import useGetMovies from '../../hooks/api/useGetMovies';
-import { IFilmPosterProps } from '../../components/filmPosters';
+import FilmPosters from '../../components/FilmPosters';
+import useGetNowPlaying from '../../hooks/api/useGetNowPlaying';
+import { IFilmPosterProps } from '../../components/FilmPosters';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import useGetGenre from '../../hooks/api/useGetGenre';
-import Pager from '../../components/pager';
+import Pager from '../../components/Pager';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { addActualPage } from '../../redux/moviesSlice';
 import useQueryParams from '../../hooks/useQueryParams';
+import env from '../../constants/Enviroments';
 
 const Home: React.FC = () => {
   const queries = useQueryParams();
   const page = queries.get('page'); // Toma el valor del query search page por ejemplo ?page=1
-  const { getMovies } = useGetMovies(page ?? '1');
+  const { getNowPlaying } = useGetNowPlaying(page ?? '1');
   const { getGenre } = useGetGenre();
-  const { movies, genres, totalPages, actualPage } = useSelector<any, any>(
-    (state) => state.movies
+  const { nowPlaying, genres } = useSelector<any, any>(
+    (state) => state.nowPlaying
+  );
+  const { totalPages, actualPage } = useSelector<any, any>(
+    (state) => state.pager
   );
   const history = useHistory();
-  const URL_POSTER = 'https://image.tmdb.org/t/p/original'; // TODO agregar a la variables de entorno
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (movies) {
+    if (nowPlaying) {
       getGenre();
     }
   }, []);
 
   useEffect(() => {
-    getMovies();
+    getNowPlaying();
   }, [page]);
 
   const handlePage = (newPage: number | boolean) => {
@@ -44,7 +44,6 @@ const Home: React.FC = () => {
       search: `?page=${newPage}`,
     };
     history.push(newLocation);
-    dispatch(addActualPage(newPage)); // TODO esto no esta haciendo nada el valor de la pagina para los request vienes de la linea 21
   };
 
   return (
@@ -71,9 +70,9 @@ const Home: React.FC = () => {
       </Section>
       <Section>
         <div className="flex flex-wrap justify-center">
-          {movies?.length &&
+          {nowPlaying?.length &&
             genres?.length &&
-            movies.map(
+            nowPlaying.map(
               (
                 {
                   poster_path,
@@ -88,7 +87,7 @@ const Home: React.FC = () => {
               ) => (
                 <FilmPosters
                   key={index}
-                  poster_path={`${URL_POSTER + poster_path}`}
+                  poster_path={`${env.URL_POSTER + poster_path}`}
                   original_title={original_title}
                   overview={overview}
                   release_date={release_date && release_date.slice(0, 4)}

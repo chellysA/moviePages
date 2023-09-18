@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { IFilmPosterProps } from '../filmPosters';
-import Button from '../button';
+import { IFilmPosterProps } from '../FilmPosters';
+import Button from '../Button';
 import { BsFillPlayFill } from 'react-icons/bs';
 
 const MovieDescription = ({

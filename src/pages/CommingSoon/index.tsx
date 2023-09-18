@@ -1,5 +1,5 @@
-import SortMenu from '../../components/sort-menu';
-import Subtitle from '../../components/subtitle';
+import SortMenu from '../../components/Sort-menu';
+import Subtitle from '../../components/Subtitle';
 import React from 'react';
 
 const CommingSoon = () => {
@@ -11,5 +11,4 @@ const CommingSoon = () => {
   );
 };
 
-// TODO Cambiar el nombre de las carpetas de pages y la de componentes a Camelcase
 export default CommingSoon;

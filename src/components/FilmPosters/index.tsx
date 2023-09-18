@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AiFillStar } from 'react-icons/ai';
-import Button from '../button';
+import Button from '../Button';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 

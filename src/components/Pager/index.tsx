@@ -1,5 +1,5 @@
 import React from 'react';
-import PagerButtons from '../pagerButtons';
+import PagerButtons from '../PagerButtons';
 import { MdKeyboardDoubleArrowLeft } from 'react-icons/md';
 import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
 import { FiMoreHorizontal } from 'react-icons/fi';
@@ -31,7 +31,7 @@ const Pager = ({ totalPages, actualPages, onClick }: IPagerProps) => {
                 onClick={() => {
                   onClick(1);
                 }}
-              />{' '}
+              />
               <PagerButtons
                 content={
                   <FiMoreHorizontal className="w-[20px] h-[20px] ml-3" />

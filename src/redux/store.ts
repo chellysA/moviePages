@@ -1,4 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import moviesReducer from './moviesSlice';
+import nowPlayingReducer from './nowPlayingSlice';
+import pagerReducer from './pagerSlice';
 
-export const store = configureStore({ reducer: { movies: moviesReducer } });
+export const store = configureStore({
+  reducer: { nowPlaying: nowPlayingReducer, pager: pagerReducer },
+});
