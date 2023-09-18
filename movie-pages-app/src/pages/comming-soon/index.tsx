@@ -11,4 +11,5 @@ const CommingSoon = () => {
   );
 };
 
+// TODO Cambiar el nombre de las carpetas de pages y la de componentes a Camelcase
 export default CommingSoon;

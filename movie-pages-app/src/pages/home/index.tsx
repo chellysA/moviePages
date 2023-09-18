@@ -18,14 +18,14 @@ import useQueryParams from '../../hooks/useQueryParams';
 
 const Home: React.FC = () => {
   const queries = useQueryParams();
-  const page = queries.get('page');
+  const page = queries.get('page'); // Toma el valor del query search page por ejemplo ?page=1
   const { getMovies } = useGetMovies(page ?? '1');
   const { getGenre } = useGetGenre();
   const { movies, genres, totalPages, actualPage } = useSelector<any, any>(
     (state) => state.movies
   );
   const history = useHistory();
-  const URL_POSTER = 'https://image.tmdb.org/t/p/original';
+  const URL_POSTER = 'https://image.tmdb.org/t/p/original'; // TODO agregar a la variables de entorno
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -44,8 +44,9 @@ const Home: React.FC = () => {
       search: `?page=${newPage}`,
     };
     history.push(newLocation);
-    dispatch(addActualPage(newPage));
+    dispatch(addActualPage(newPage)); // TODO esto no esta haciendo nada el valor de la pagina para los request vienes de la linea 21
   };
+
   return (
     <>
       <Carousel />

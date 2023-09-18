@@ -2,8 +2,8 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addCredits } from '../../redux/moviesSlice';
 
-const API_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '0b97a531d5627d04bf68076ad1254c21';
+const API_URL = 'https://api.themoviedb.org/3'; // TODO Agregar a variables de entorno
+const API_KEY = '0b97a531d5627d04bf68076ad1254c21'; // TODO Agregar a variables de entorno
 
 const useGetCredits = (movieId: string | null) => {
   const dispatch = useDispatch();

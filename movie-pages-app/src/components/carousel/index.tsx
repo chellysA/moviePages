@@ -16,7 +16,7 @@ const Carousel: React.FC = () => {
     cssEase: 'linear',
     arrows: false,
   };
-  const URL_POSTER = 'https://image.tmdb.org/t/p/original';
+  const URL_POSTER = 'https://image.tmdb.org/t/p/original'; // TODO Debe estar en env
   const { movies, genres } = useSelector<any, any>((state) => state.movies);
 
   return (

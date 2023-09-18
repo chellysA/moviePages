@@ -18,7 +18,7 @@ const Overview = () => {
   const { getDetails } = useGetDetails(id);
   const { getCredits } = useGetCredits(id);
 
-  const URL_POSTER = 'https://image.tmdb.org/t/p/original';
+  const URL_POSTER = 'https://image.tmdb.org/t/p/original'; // TODO colocar en env
 
   useEffect(() => {
     getDetails();
@@ -26,7 +26,7 @@ const Overview = () => {
     getVideos();
   }, [id]);
 
-  const imdb = movies?.filter((e: any) => e.id === Number(id))[0]?.vote_average;
+  const imdb = movies?.filter((e: any) => e.id === Number(id))[0]?.vote_average; // TODO Tomar valor desde details y redondear valor
   const country =
     details.production_countries &&
     details.production_countries.map((e: any) => e.name).join(', ');
@@ -86,6 +86,7 @@ const Overview = () => {
               <div className="flex justify-between w-2/4">
                 <div>
                   <p className="text-gray-50">Country:</p>
+                  {/* TODO Colocar que cuando sea mas de un country colocar Countries */}
                   <p className="text-gray-50">Genre:</p>
                   <p className="text-gray-50">Released:</p>
                   <p className="text-gray-50">Cast:</p>
