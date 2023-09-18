@@ -32,7 +32,6 @@ const Carousel: React.FC = () => {
               release_date,
               genre_ids,
               id,
-              poster_path,
             }: IFilmPosterProps,
             index: any
           ) => {

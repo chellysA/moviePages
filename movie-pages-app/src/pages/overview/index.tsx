@@ -6,12 +6,10 @@ import useGetDetails from '../../hooks/api/useGetDetails';
 import Section from '../../components/section';
 import { AiFillStar } from 'react-icons/ai';
 import useGetCredits from '../../hooks/api/useGetCredits';
-import Subtitle from '../../components/subtitle';
-import FilmPosters, { IFilmPosterProps } from '../../components/filmPosters';
 
 const Overview = () => {
   const { id }: any = useParams();
-  const { videos, details, movies, credits, genres } = useSelector<any, any>(
+  const { videos, details, credits } = useSelector<any, any>(
     (state) => state.movies
   );
   const { getVideos } = useGetVideos(id);
@@ -25,8 +23,8 @@ const Overview = () => {
     getCredits();
     getVideos();
   }, [id]);
-
-  const imdb = movies?.filter((e: any) => e.id === Number(id))[0]?.vote_average;
+  console.log(details);
+  const imdb = details.vote_average?.toFixed(1);
   const country =
     details.production_countries &&
     details.production_countries.map((e: any) => e.name).join(', ');
@@ -105,52 +103,6 @@ const Overview = () => {
           </div>
         </div>
       </Section>
-
-      {movies.length && (
-        <Section>
-          <div className="p-8">
-            <Subtitle label="You May Also Like" />
-            <div className="flex flex-wrap justify-center mt-10 ">
-              {movies?.length &&
-                genres?.length &&
-                movies
-                  .slice(5, 15)
-                  .map(
-                    (
-                      {
-                        poster_path,
-                        original_title,
-                        overview,
-                        release_date,
-                        vote_average,
-                        genre_ids,
-                        id,
-                      }: IFilmPosterProps,
-                      index: any
-                    ) => (
-                      <FilmPosters
-                        key={index}
-                        poster_path={`${URL_POSTER + poster_path}`}
-                        original_title={original_title}
-                        overview={overview}
-                        release_date={release_date && release_date.slice(0, 4)}
-                        vote_average={vote_average}
-                        filmType="Movie"
-                        genre_ids={
-                          genres?.length &&
-                          genre_ids?.length &&
-                          genres.filter((e: any) => {
-                            return e.id === genre_ids[0];
-                          })[0].name
-                        }
-                        id={id}
-                      />
-                    )
-                  )}
-            </div>
-          </div>
-        </Section>
-      )}
     </>
   );
 };
