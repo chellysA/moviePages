@@ -31,7 +31,7 @@
     "noEmit": true,
     "isolatedModules": true,
     "incremental": true,
-    "types": ["node", "vite/client"],
+    "types": ["vite/client"],
     "baseUrl": ".",
 
     "paths": {

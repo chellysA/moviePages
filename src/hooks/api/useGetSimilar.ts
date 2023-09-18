@@ -1,25 +1,26 @@
+import { addSimilar } from '../../redux/detailsSlice';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { addVideos } from '../../redux/detailsSlice';
 import env from '../../constants/Enviroments';
 
-const useGetVideos = (movieId: string | null) => {
+const useGetSimilar = (movieId: string | null) => {
   const dispatch = useDispatch();
 
-  const getVideos = async () => {
+  const getSimilar = async () => {
     const {
       data: { results },
     } = await axios.get(
-      `${env.API_URL}/movie/${movieId}/videos?language=en-US`,
+      `${env.API_URL}/movie/${movieId}/similar?language=en-US&page=1`,
       {
         params: {
           api_key: env.API_KEY,
         },
       }
     );
-    dispatch(addVideos(results));
+    dispatch(addSimilar(results));
   };
-  return { getVideos };
+
+  return { getSimilar };
 };
 
-export default useGetVideos;
+export default useGetSimilar;

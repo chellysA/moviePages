@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { addCredits } from '../../redux/nowPlayingSlice';
+import { addCredits } from '../../redux/detailsSlice';
 import env from '../../constants/Enviroments';
 
 const useGetCredits = (movieId: string | null) => {

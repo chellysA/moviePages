@@ -7,22 +7,30 @@ import Section from '../../components/Section';
 import { AiFillStar } from 'react-icons/ai';
 import useGetCredits from '../../hooks/api/useGetCredits';
 import env from '../../constants/Enviroments';
+import useGetSimilar from '../../hooks/api/useGetSimilar';
+import FilmPosters, { IFilmPosterProps } from '../../components/FilmPosters';
+import useGetGenre from '../../hooks/api/useGetGenre';
+import Subtitle from '../../components/Subtitle';
 
 const Overview = () => {
   const { id }: any = useParams();
-  const { videos, details, credits } = useSelector<any, any>(
-    (state) => state.nowPlaying
+  const { videos, details, credits, similar, genres } = useSelector<any, any>(
+    (state) => state.details
   );
   const { getVideos } = useGetVideos(id);
   const { getDetails } = useGetDetails(id);
   const { getCredits } = useGetCredits(id);
+  const { getSimilar } = useGetSimilar(id);
+  const { getGenre } = useGetGenre();
 
   useEffect(() => {
     getDetails();
     getCredits();
     getVideos();
+    getSimilar();
+    getGenre();
   }, [id]);
-
+  console.log(similar);
   const imdb = details.vote_average?.toFixed(1);
   let regex = /[,]/;
   const country =
@@ -56,12 +64,12 @@ const Overview = () => {
           {videos.length && (
             <iframe
               id="video"
-              className="w-full h-[600px] mb-10"
+              className="w-full h-[500px] mb-10"
               src={`https://www.youtube-nocookie.com/embed/${videoKey}?rel=0&amp;controls=0&amp;showinfo=0`}
             ></iframe>
           )}
           <hr className="mb-10"></hr>
-          <div className="flex">
+          <div className="flex mb-10">
             <div>
               <img
                 src={`${env.URL_POSTER + details.poster_path}`}
@@ -112,6 +120,45 @@ const Overview = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <Subtitle label="You May Also Like" />
+          <div className="flex flex-wrap justify-center mt-10">
+            {similar?.length &&
+              genres?.length &&
+              similar
+                .slice(0, 10)
+                .map(
+                  (
+                    {
+                      poster_path,
+                      original_title,
+                      overview,
+                      release_date,
+                      vote_average,
+                      genre_ids,
+                      id,
+                    }: IFilmPosterProps,
+                    index: any
+                  ) => (
+                    <FilmPosters
+                      key={index}
+                      poster_path={`${env.URL_POSTER + poster_path}`}
+                      original_title={original_title}
+                      overview={overview}
+                      release_date={release_date && release_date.slice(0, 4)}
+                      vote_average={vote_average}
+                      filmType="Movie"
+                      genre_ids={
+                        genres?.length &&
+                        genre_ids?.length &&
+                        genres.filter((e: any) => {
+                          return e.id === genre_ids[0];
+                        })[0].name
+                      }
+                      id={id}
+                    />
+                  )
+                )}
           </div>
         </div>
       </Section>

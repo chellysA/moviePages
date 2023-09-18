@@ -11,7 +11,7 @@ import { IFilmPosterProps } from '../../components/FilmPosters';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import useGetGenre from '../../hooks/api/useGetGenre';
 import Pager from '../../components/Pager';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import useQueryParams from '../../hooks/useQueryParams';
 import env from '../../constants/Enviroments';
 
@@ -20,12 +20,11 @@ const Home: React.FC = () => {
   const page = queries.get('page'); // Toma el valor del query search page por ejemplo ?page=1
   const { getNowPlaying } = useGetNowPlaying(page ?? '1');
   const { getGenre } = useGetGenre();
-  const { nowPlaying, genres } = useSelector<any, any>(
-    (state) => state.nowPlaying
-  );
+  const { nowPlaying } = useSelector<any, any>((state) => state.nowPlaying);
   const { totalPages, actualPage } = useSelector<any, any>(
     (state) => state.pager
   );
+  const { genres } = useSelector<any, any>((state) => state.details);
   const history = useHistory();
 
   useEffect(() => {
@@ -45,7 +44,6 @@ const Home: React.FC = () => {
     };
     history.push(newLocation);
   };
-
   return (
     <>
       <Carousel />
@@ -55,16 +53,20 @@ const Home: React.FC = () => {
         <div className="flex px-8 py-4">
           <Subtitle label="Trending" />
           <div className="flex justify-between w-[250px]">
-            <Button
-              label="Movies"
-              icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
-              border={true}
-            />
-            <Button
-              label="TV Shows"
-              icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
-              border={true}
-            />
+            <Link to="/movies" className="no-underline">
+              <Button
+                label="Movies"
+                icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
+                border={true}
+              />
+            </Link>
+            <Link to="/tv-shows" className="no-underline">
+              <Button
+                label="TV Shows"
+                icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
+                border={true}
+              />
+            </Link>
           </div>
         </div>
       </Section>

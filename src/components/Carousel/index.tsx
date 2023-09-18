@@ -13,14 +13,13 @@ const Carousel: React.FC = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 10000,
+    autoplaySpeed: 8000,
     cssEase: 'linear',
     arrows: false,
   };
 
-  const { nowPlaying, genres } = useSelector<any, any>(
-    (state) => state.nowPlaying
-  );
+  const { nowPlaying } = useSelector<any, any>((state) => state.nowPlaying);
+  const { genres } = useSelector<any, any>((state) => state.details);
   return (
     <div>
       <Slider {...settings} className="mb-8">
