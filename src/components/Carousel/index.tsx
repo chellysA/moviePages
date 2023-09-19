@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { IFilmPosterProps } from '../FilmPosters';
 import MovieDescription from '../MovieDescription';
 import env from '../../constants/Enviroments';
+import { useIsMobile } from '../../hooks/useIsMobile';
 
 const Carousel: React.FC = () => {
   const settings = {
@@ -20,13 +21,14 @@ const Carousel: React.FC = () => {
 
   const { nowPlaying } = useSelector<any, any>((state) => state.nowPlaying);
   const { genres } = useSelector<any, any>((state) => state.details);
+  const mobile = useIsMobile();
+
   return (
     <div>
       <Slider {...settings} className="mb-8">
         {nowPlaying?.map(
           (
             {
-              backdrop_path,
               original_title,
               overview,
               vote_average,
@@ -34,6 +36,7 @@ const Carousel: React.FC = () => {
               genre_ids,
               id,
               poster_path,
+              backdrop_path,
             }: IFilmPosterProps,
             index: any
           ) => {
@@ -41,7 +44,9 @@ const Carousel: React.FC = () => {
               <div key={index}>
                 <div
                   style={{
-                    backgroundImage: `url(${env.URL_POSTER + backdrop_path})`,
+                    backgroundImage: `url(${
+                      env.URL_POSTER + (mobile ? poster_path : backdrop_path)
+                    })`,
                   }}
                   className="w-full h-[98vh] md:h-[650px] bg-cover bg-no-repeat bg-center "
                 >
