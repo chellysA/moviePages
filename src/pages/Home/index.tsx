@@ -24,6 +24,7 @@ const Home: React.FC = () => {
   const { totalPages, actualPage } = useSelector<any, any>(
     (state) => state.pager
   );
+
   const { genres } = useSelector<any, any>((state) => state.details);
   const history = useHistory();
 
@@ -47,7 +48,6 @@ const Home: React.FC = () => {
   return (
     <>
       <Carousel />
-
       <Brief />
       <Section>
         <div className="flex px-8 py-4">

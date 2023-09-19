@@ -6,6 +6,7 @@ import TVShows from '../pages/TvShows';
 import MostWatched from '../pages/MostWatched';
 import CommingSoon from '../pages/CommingSoon';
 import Overview from '../pages/Overview';
+import SearchResults from '../pages/SearchResults';
 
 const Routes: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -35,6 +36,9 @@ const Routes: React.FC = () => {
         </Route>
         <Route exact path="/movie/:id">
           <Overview />
+        </Route>
+        <Route path="/search">
+          <SearchResults />
         </Route>
       </Switch>
     </div>

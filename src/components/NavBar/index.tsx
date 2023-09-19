@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png';
 import { FaSearch } from 'react-icons/fa';
 import { TfiMenuAlt } from 'react-icons/tfi';
 import { AiOutlineClose } from 'react-icons/ai';
+import SearchBar from '../SearchBar';
 interface IStatLink {
   link: string;
   label: string;
@@ -86,19 +87,7 @@ const NavBar: React.FC = () => {
             <StatLink link="/most-watched" label="Most Watched" />
           </ul>
         </div>
-        <div
-          id="search-bar"
-          className="flex w-[150px] lg:w-[300px] h-[44px] rounded-2xl backdrop-contrast-50 "
-        >
-          <div className="w-[55px] p-2 md:p-0 flex items-center justify-center">
-            <FaSearch className="text-white align-middle" />
-          </div>
-          <input
-            type="text"
-            placeholder="Enter keywords..."
-            className="border-none bg-transparent text-white w-full text-[14px]"
-          />
-        </div>
+        <SearchBar />
       </nav>
     </>
   );
