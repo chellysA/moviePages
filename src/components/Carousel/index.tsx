@@ -24,7 +24,7 @@ const Carousel: React.FC = () => {
   const mobile = useIsMobile();
 
   return (
-    <div>
+    <div className="min-h-[600px]">
       <Slider {...settings} className="mb-8">
         {nowPlaying?.map(
           (

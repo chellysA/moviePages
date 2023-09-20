@@ -5,32 +5,18 @@ import FilmPosters, { IFilmPosterProps } from '../../components/FilmPosters';
 import Section from '../../components/Section';
 import env from '../../constants/Enviroments';
 import useQueryParams from '../../hooks/useQueryParams';
-import Pager from '../../components/Pager';
-import { useHistory } from 'react-router-dom';
 import useGetSearcher from '../../hooks/api/useGetSearcher';
 
 const SearchResults = () => {
   const queries = useQueryParams();
   const movieTitle = queries.get('q');
-  const page = queries.get('page');
-  const history = useHistory();
-  const { getSearcher } = useGetSearcher(movieTitle, page);
+  const { getSearcher } = useGetSearcher(movieTitle);
   const { searcher } = useSelector<any, any>((state) => state.searcher);
   const { genres } = useSelector<any, any>((state) => state.details);
-  const { totalPages, actualPage } = useSelector<any, any>(
-    (state) => state.pager
-  );
+
   useEffect(() => {
     getSearcher();
-  }, [page]);
-
-  const handlePage = (newPage: number | boolean) => {
-    const newLocation = {
-      pathname: '/search',
-      search: `?page=${newPage}`,
-    };
-    history.push(newLocation);
-  };
+  }, []);
 
   return (
     <>
@@ -77,11 +63,6 @@ const SearchResults = () => {
                 )}
             </div>
           </Section>
-          <Pager
-            totalPages={totalPages}
-            actualPages={actualPage}
-            onClick={handlePage}
-          />
         </div>
       </Section>
     </>

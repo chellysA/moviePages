@@ -1,31 +1,28 @@
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { addSearcher } from '../../redux/searcherSlice';
 import env from '../../constants/Enviroments';
+import { addMovies } from '../../redux/moviesSlice';
 import { addActualPage, addTotalPages } from '../../redux/pagerSlice';
 
-const useGetSearcher = (
-  movieTitle: string | null,
-  actualPage?: string | null
-) => {
+const useGetMovies = (actualPage: string | null) => {
   const dispatch = useDispatch();
 
-  const getSearcher = async () => {
+  const getMovies = async () => {
     const {
       data: { results, total_pages, page },
     } = await axios.get(
-      `${env.API_URL}/search/movie?query=${movieTitle}&include_adult=false&language=en-US&page=${actualPage}`,
+      `${env.API_URL}/movie/popular?language=en-US&page=${actualPage}`,
       {
         params: {
           api_key: env.API_KEY,
         },
       }
     );
+    dispatch(addMovies(results));
+    dispatch(addTotalPages(total_pages > 500 ? 500 : total_pages));
     dispatch(addActualPage(page));
-    dispatch(addTotalPages(total_pages));
-    dispatch(addSearcher(results));
   };
-  return { getSearcher };
+  return { getMovies };
 };
 
-export default useGetSearcher;
+export default useGetMovies;
