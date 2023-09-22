@@ -9,20 +9,23 @@ import useGetGenre from '../../hooks/api/useGetGenre';
 import FilmPosters, { IFilmPosterProps } from '../../components/FilmPosters';
 import env from '../../constants/Enviroments';
 import { useSelector } from 'react-redux';
+import useGetMoviesSortList from '../../hooks/api/useGetSortMovieList';
 
 const Movies: React.FC = () => {
   const queries = useQueryParams();
+  const history = useHistory();
   const page = queries.get('page');
+  const sortBy = queries.get('sort_by');
+  const year = queries.get('primary_release_year');
   const { getMovies } = useGetMovies(page ?? '1');
   const { getGenre } = useGetGenre();
+  const { getMoviesSortList } = useGetMoviesSortList(sortBy, '1', year);
   const { movies } = useSelector<any, any>((state) => state.movies);
   const { genres } = useSelector<any, any>((state) => state.details);
   const { actualPage, totalPages } = useSelector<any, any>(
     (state) => state.pager
   );
-  const history = useHistory();
 
-  console.log(actualPage, totalPages);
   useEffect(() => {
     if (movies) {
       getGenre();
@@ -32,6 +35,20 @@ const Movies: React.FC = () => {
   useEffect(() => {
     getMovies();
   }, [page]);
+
+  useEffect(() => {
+    if (sortBy) {
+      getMoviesSortList();
+    }
+  }, [sortBy]);
+
+  useEffect(() => {
+    if (year) {
+      getMoviesSortList();
+    }
+  }, [year]);
+
+  const filteredMovies = movies.filter((e: any) => e.poster_path !== null);
 
   const handlePage = (newPage: number | boolean) => {
     const newLocation = {
@@ -48,10 +65,11 @@ const Movies: React.FC = () => {
       <div className="flex flex-wrap justify-center">
         {movies?.length &&
           genres?.length &&
-          movies.map(
+          filteredMovies.map(
             (
               {
                 poster_path,
+                backdrop_path,
                 original_title,
                 overview,
                 release_date,
@@ -64,6 +82,7 @@ const Movies: React.FC = () => {
               <FilmPosters
                 key={index}
                 poster_path={`${env.URL_POSTER + poster_path}`}
+                backdrop_path={`${env.URL_POSTER + backdrop_path}`}
                 original_title={original_title}
                 overview={overview}
                 release_date={release_date && release_date.slice(0, 4)}

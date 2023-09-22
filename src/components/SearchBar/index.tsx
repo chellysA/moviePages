@@ -10,7 +10,7 @@ const SearchBar = () => {
   const page = queries.get('page');
   const history = useHistory();
   const { getSearcher } = useGetSearcher(movieTitle, page ?? '1');
-  console.log(queries);
+
   useEffect(() => {
     if (movieTitle) {
       getSearcher();
