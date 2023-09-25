@@ -53,17 +53,17 @@ const NavBar: React.FC = () => {
               onClick={() => setShowMenu(false)}
             />
             <StatLink
-              link="/tv-shows"
+              link="/tv_shows"
               label="TV Shows"
               onClick={() => setShowMenu(false)}
             />
             <StatLink
-              link="/coming-soon"
+              link="/coming_soon"
               label="Comming Soon"
               onClick={() => setShowMenu(false)}
             />
             <StatLink
-              link="/most-watched"
+              link="/most_watched"
               label="Most Watched"
               onClick={() => setShowMenu(false)}
             />
@@ -82,9 +82,9 @@ const NavBar: React.FC = () => {
           <ul className="items-center m-0 p-0 md:flex hidden">
             <StatLink link="/" label="Home" />
             <StatLink link="/movies" label="Movies" />
-            <StatLink link="/tv-shows" label="TV Shows" />
-            <StatLink link="/comming-soon" label="Comming Soon" />
-            <StatLink link="/most-watched" label="Most Watched" />
+            <StatLink link="/tv_shows" label="TV Shows" />
+            <StatLink link="/comming_soon" label="Comming Soon" />
+            <StatLink link="/most_watched" label="Most Watched" />
           </ul>
         </div>
         <SearchBar />

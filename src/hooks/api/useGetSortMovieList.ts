@@ -6,8 +6,7 @@ import { addMovies } from '../../redux/moviesSlice';
 
 const useGetMoviesSortList = (
   sortBy: string | null,
-  actualPage?: string | null,
-  year?: string | null
+  actualPage?: string | null
 ) => {
   const dispatch = useDispatch();
 
@@ -22,6 +21,7 @@ const useGetMoviesSortList = (
         },
       }
     );
+
     dispatch(addMovies(results));
     dispatch(addTotalPages(total_pages > 500 ? 500 : total_pages));
     dispatch(addActualPage(page));

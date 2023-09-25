@@ -25,13 +25,13 @@ const Routes: React.FC = () => {
         <Route exact path="/movies">
           <Movies />
         </Route>
-        <Route exact path="/tv-shows">
+        <Route exact path="/tv_shows">
           <TVShows />
         </Route>
-        <Route exact path="/comming-soon">
+        <Route exact path="/comming_soon">
           <CommingSoon />
         </Route>
-        <Route exact path="/most-watched">
+        <Route exact path="/most_watched">
           <MostWatched />
         </Route>
         <Route exact path="/movie/:id">

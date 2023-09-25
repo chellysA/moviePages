@@ -4,6 +4,7 @@ import pagerReducer from './pagerSlice';
 import detailsReducer from './detailsSlice';
 import searcherReducer from './searcherSlice';
 import moviesReducer from './moviesSlice';
+import tvShowsReducer from './tvShowsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     details: detailsReducer,
     searcher: searcherReducer,
     movies: moviesReducer,
+    tvShows: tvShowsReducer,
   },
 });

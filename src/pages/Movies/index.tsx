@@ -19,7 +19,7 @@ const Movies: React.FC = () => {
   const year = queries.get('primary_release_year');
   const { getMovies } = useGetMovies(page ?? '1');
   const { getGenre } = useGetGenre();
-  const { getMoviesSortList } = useGetMoviesSortList(sortBy, '1', year);
+  const { getMoviesSortList } = useGetMoviesSortList(sortBy, '1');
   const { movies } = useSelector<any, any>((state) => state.movies);
   const { genres } = useSelector<any, any>((state) => state.details);
   const { actualPage, totalPages } = useSelector<any, any>(
