@@ -30,7 +30,7 @@ const Overview = () => {
     getSimilar();
     getGenre();
   }, [id]);
-  console.log(similar);
+
   const imdb = details.vote_average?.toFixed(1);
   let regex = /[,]/;
   const country =

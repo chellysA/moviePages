@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png';
 import { FaSearch } from 'react-icons/fa';
 import { TfiMenuAlt } from 'react-icons/tfi';
 import { AiOutlineClose } from 'react-icons/ai';
+import SearchBar from '../SearchBar';
 interface IStatLink {
   link: string;
   label: string;
@@ -52,17 +53,17 @@ const NavBar: React.FC = () => {
               onClick={() => setShowMenu(false)}
             />
             <StatLink
-              link="/tv-shows"
+              link="/tv_shows"
               label="TV Shows"
               onClick={() => setShowMenu(false)}
             />
             <StatLink
-              link="/coming-soon"
+              link="/coming_soon"
               label="Comming Soon"
               onClick={() => setShowMenu(false)}
             />
             <StatLink
-              link="/most-watched"
+              link="/most_watched"
               label="Most Watched"
               onClick={() => setShowMenu(false)}
             />
@@ -81,24 +82,12 @@ const NavBar: React.FC = () => {
           <ul className="items-center m-0 p-0 md:flex hidden">
             <StatLink link="/" label="Home" />
             <StatLink link="/movies" label="Movies" />
-            <StatLink link="/tv-shows" label="TV Shows" />
-            <StatLink link="/comming-soon" label="Comming Soon" />
-            <StatLink link="/most-watched" label="Most Watched" />
+            <StatLink link="/tv_shows" label="TV Shows" />
+            <StatLink link="/comming_soon" label="Comming Soon" />
+            <StatLink link="/most_watched" label="Most Watched" />
           </ul>
         </div>
-        <div
-          id="search-bar"
-          className="flex w-[150px] lg:w-[300px] h-[44px] rounded-2xl backdrop-contrast-50 "
-        >
-          <div className="w-[55px] p-2 md:p-0 flex items-center justify-center">
-            <FaSearch className="text-white align-middle" />
-          </div>
-          <input
-            type="text"
-            placeholder="Enter keywords..."
-            className="border-none bg-transparent text-white w-full text-[14px]"
-          />
-        </div>
+        <SearchBar />
       </nav>
     </>
   );

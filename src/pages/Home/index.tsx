@@ -24,6 +24,7 @@ const Home: React.FC = () => {
   const { totalPages, actualPage } = useSelector<any, any>(
     (state) => state.pager
   );
+
   const { genres } = useSelector<any, any>((state) => state.details);
   const history = useHistory();
 
@@ -47,7 +48,6 @@ const Home: React.FC = () => {
   return (
     <>
       <Carousel />
-
       <Brief />
       <Section>
         <div className="flex px-8 py-4">
@@ -78,6 +78,7 @@ const Home: React.FC = () => {
               (
                 {
                   poster_path,
+                  backdrop_path,
                   original_title,
                   overview,
                   release_date,
@@ -90,6 +91,7 @@ const Home: React.FC = () => {
                 <FilmPosters
                   key={index}
                   poster_path={`${env.URL_POSTER + poster_path}`}
+                  backdrop_path={`${env.URL_POSTER + backdrop_path}`}
                   original_title={original_title}
                   overview={overview}
                   release_date={release_date && release_date.slice(0, 4)}

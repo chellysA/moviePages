@@ -21,3 +21,15 @@ li {
     rgba(0, 0, 0, 1) 80%
   );
 }
+
+#filmPoster:hover > #nohover {
+  visibility: hidden;
+}
+
+#filmPoster:hover > #descriptionFilm {
+  visibility: visible;
+}
+
+#descriptionFilm {
+  visibility: hidden;
+}
