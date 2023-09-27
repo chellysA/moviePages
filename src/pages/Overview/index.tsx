@@ -121,6 +121,10 @@ const Overview = () => {
               </div>
             </div>
           </div>
+        </div>
+      </Section>
+      {similar.length && (
+        <>
           <Subtitle label="You May Also Like" />
           <div className="flex flex-wrap justify-center mt-10">
             {similar?.length &&
@@ -160,8 +164,8 @@ const Overview = () => {
                   )
                 )}
           </div>
-        </div>
-      </Section>
+        </>
+      )}
     </>
   );
 };
