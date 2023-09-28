@@ -1,16 +1,16 @@
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { addCredits } from '../../redux/detailsSlice';
-import env from '../../constants/Enviroments';
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addCredits } from "../../redux/detailsSlice";
+import env from "../../constants/Enviroments";
 
-const useGetCredits = (movieId: string | null) => {
+const useGetCredits = (movieId: string | null, filmType: string | null) => {
   const dispatch = useDispatch();
 
   const getCredits = async () => {
     const {
       data: { cast },
     } = await axios.get(
-      `${env.API_URL}/movie/${movieId}/credits?language=en-US`,
+      `${env.API_URL}/${filmType}/${movieId}/credits?language=en-US`,
       {
         params: {
           api_key: env.API_KEY,

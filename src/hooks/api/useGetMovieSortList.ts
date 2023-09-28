@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import env from '../../constants/Enviroments';
-import { addActualPage, addTotalPages } from '../../redux/pagerSlice';
-import { addMovies } from '../../redux/moviesSlice';
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import env from "../../constants/Enviroments";
+import { addActualPage, addTotalPages } from "../../redux/pagerSlice";
+import { addMovies } from "../../redux/moviesSlice";
 
 const useGetMoviesSortList = (
   sortBy: string | null,

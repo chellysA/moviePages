@@ -1,7 +1,7 @@
-import React from 'react';
-import logo from '../../assets/logo.png';
-import { FaLinkedin } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import logo from "../../assets/logo.png";
+import { FaLinkedin } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 interface IStatLink {
   link: string;
@@ -27,7 +27,7 @@ const Footer = () => {
             FMovies is the best free streaming site 2023, where you can watch
             movies online for free, no registration required. With a large
             database and great features, we're confident that FMovies is the
-            best free online movie site in the space you just can't miss!{' '}
+            best free online movie site in the space you just can't miss!{" "}
             <span>
               This page is building as a practice for me to learn axios.
             </span>
@@ -46,8 +46,8 @@ const Footer = () => {
           <p className="text-white font-bold mt-4">Links</p>
           <StatLink link="/" label="Home" />
           <StatLink link="/movies" label="Movies" />
-          <StatLink link="/tv-shows" label="Tv Shows" />
-          <StatLink link="/most-watched" label="Most Watched" />
+          <StatLink link="/tv_shows" label="Tv Shows" />
+          {/*<StatLink link="/most-watched" label="Most Watched" />*/}
         </div>
       </div>
       <div className="flex"></div>
