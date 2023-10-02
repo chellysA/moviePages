@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import logo from '../../assets/logo.png';
-import { FaSearch } from 'react-icons/fa';
-import { TfiMenuAlt } from 'react-icons/tfi';
-import { AiOutlineClose } from 'react-icons/ai';
-import SearchBar from '../SearchBar';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import logo from "../../assets/logo.png";
+import { FaSearch } from "react-icons/fa";
+import { TfiMenuAlt } from "react-icons/tfi";
+import { AiOutlineClose } from "react-icons/ai";
+import SearchBar from "../SearchBar";
 interface IStatLink {
   link: string;
   label: string;
@@ -57,7 +57,7 @@ const NavBar: React.FC = () => {
               label="TV Shows"
               onClick={() => setShowMenu(false)}
             />
-            <StatLink
+            {/*   <StatLink
               link="/coming_soon"
               label="Comming Soon"
               onClick={() => setShowMenu(false)}
@@ -66,7 +66,7 @@ const NavBar: React.FC = () => {
               link="/most_watched"
               label="Most Watched"
               onClick={() => setShowMenu(false)}
-            />
+      />*/}
           </ul>
         </div>
       </div>
@@ -83,11 +83,11 @@ const NavBar: React.FC = () => {
             <StatLink link="/" label="Home" />
             <StatLink link="/movies" label="Movies" />
             <StatLink link="/tv_shows" label="TV Shows" />
-            <StatLink link="/comming_soon" label="Comming Soon" />
-            <StatLink link="/most_watched" label="Most Watched" />
+            {/*    <StatLink link="/comming_soon" label="Comming Soon" />
+            <StatLink link="/most_watched" label="Most Watched" />*/}
           </ul>
         </div>
-        <SearchBar />
+        {/* <SearchBar />*/}
       </nav>
     </>
   );

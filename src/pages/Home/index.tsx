@@ -1,25 +1,25 @@
-import Subtitle from '../../components/Subtitle';
-import Brief from '../../components/Brief';
-import Carousel from '../../components/Carousel';
-import React, { useEffect } from 'react';
-import Section from '../../components/Section';
-import Button from '../../components/Button';
-import { BsFillPlayFill } from 'react-icons/bs';
-import FilmPosters from '../../components/FilmPosters';
-import useGetNowPlaying from '../../hooks/api/useGetNowPlaying';
-import { IFilmPosterProps } from '../../components/FilmPosters';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
-import useGetGenre from '../../hooks/api/useGetGenre';
-import Pager from '../../components/Pager';
-import { Link, useHistory } from 'react-router-dom';
-import useQueryParams from '../../hooks/useQueryParams';
-import env from '../../constants/Enviroments';
+import Subtitle from "../../components/Subtitle";
+import Brief from "../../components/Brief";
+import Carousel from "../../components/Carousel";
+import React, { useEffect } from "react";
+import Section from "../../components/Section";
+import Button from "../../components/Button";
+import { BsFillPlayFill } from "react-icons/bs";
+import FilmPosters from "../../components/FilmPosters";
+import useGetNowPlaying from "../../hooks/api/useGetNowPlaying";
+import { IFilmPosterProps } from "../../components/FilmPosters";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import useGetGenre from "../../hooks/api/useGetGenre";
+import Pager from "../../components/Pager";
+import { Link, useHistory } from "react-router-dom";
+import useQueryParams from "../../hooks/useQueryParams";
+import env from "../../constants/Enviroments";
 
 const Home: React.FC = () => {
   const queries = useQueryParams();
-  const page = queries.get('page'); // Toma el valor del query search page por ejemplo ?page=1
-  const { getNowPlaying } = useGetNowPlaying(page ?? '1');
-  const { getGenre } = useGetGenre();
+  const page = queries.get("page"); // Toma el valor del query search page por ejemplo ?page=1
+  const { getNowPlaying } = useGetNowPlaying(page ?? "1");
+  const { getGenre } = useGetGenre("movie");
   const { nowPlaying } = useSelector<any, any>((state) => state.nowPlaying);
   const { totalPages, actualPage } = useSelector<any, any>(
     (state) => state.pager
@@ -40,11 +40,13 @@ const Home: React.FC = () => {
 
   const handlePage = (newPage: number | boolean) => {
     const newLocation = {
-      pathname: '/',
+      pathname: "/",
       search: `?page=${newPage}`,
     };
     history.push(newLocation);
   };
+
+  const filteredMovies = nowPlaying.filter((e: any) => e.poster_path !== null);
   return (
     <>
       <Carousel />
@@ -60,7 +62,7 @@ const Home: React.FC = () => {
                 border={true}
               />
             </Link>
-            <Link to="/tv-shows" className="no-underline">
+            <Link to="/tv_shows" className="no-underline">
               <Button
                 label="TV Shows"
                 icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
@@ -74,7 +76,7 @@ const Home: React.FC = () => {
         <div className="flex flex-wrap justify-center">
           {nowPlaying?.length &&
             genres?.length &&
-            nowPlaying.map(
+            filteredMovies.map(
               (
                 {
                   poster_path,
@@ -96,13 +98,13 @@ const Home: React.FC = () => {
                   overview={overview}
                   release_date={release_date && release_date.slice(0, 4)}
                   vote_average={vote_average}
-                  filmType="Movie"
+                  filmType="movie"
                   genre_ids={
                     genres?.length &&
                     genre_ids?.length &&
                     genres.filter((e: any) => {
                       return e.id === genre_ids[0];
-                    })[0].name
+                    })[0]?.name
                   }
                   id={id}
                 />

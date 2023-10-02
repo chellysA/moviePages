@@ -1,30 +1,31 @@
-import SortMenu from '../../components/Sort-menu';
-import Subtitle from '../../components/Subtitle';
-import React, { useEffect } from 'react';
-import useGetMovies from '../../hooks/api/useGetMovies';
-import useQueryParams from '../../hooks/useQueryParams';
-import { useHistory } from 'react-router-dom';
-import Pager from '../../components/Pager';
-import useGetGenre from '../../hooks/api/useGetGenre';
-import FilmPosters, { IFilmPosterProps } from '../../components/FilmPosters';
-import env from '../../constants/Enviroments';
-import { useSelector } from 'react-redux';
-import useGetMoviesSortList from '../../hooks/api/useGetSortMovieList';
+import SortMenu from "../../components/Sort-menu";
+import Subtitle from "../../components/Subtitle";
+import React, { useEffect } from "react";
+import useGetMovies from "../../hooks/api/useGetMovies";
+import useQueryParams from "../../hooks/useQueryParams";
+import { useHistory } from "react-router-dom";
+import Pager from "../../components/Pager";
+import useGetGenre from "../../hooks/api/useGetGenre";
+import FilmPosters, { IFilmPosterProps } from "../../components/FilmPosters";
+import env from "../../constants/Enviroments";
+import { useSelector } from "react-redux";
+import useGetMoviesSortList from "../../hooks/api/useGetMovieSortList";
 
 const Movies: React.FC = () => {
   const queries = useQueryParams();
   const history = useHistory();
-  const page = queries.get('page');
-  const sortBy = queries.get('sort_by');
-  const year = queries.get('primary_release_year');
-  const { getMovies } = useGetMovies(page ?? '1');
-  const { getGenre } = useGetGenre();
-  const { getMoviesSortList } = useGetMoviesSortList(sortBy, '1');
+  const page = queries.get("page");
+  const sortBy = queries.get("sort_by");
+  //const year = queries.get("primary_release_year");
+  const { getMovies } = useGetMovies(page ?? "1");
+  const { getGenre } = useGetGenre("movie");
+  const { getMoviesSortList } = useGetMoviesSortList(sortBy, "1");
   const { movies } = useSelector<any, any>((state) => state.movies);
   const { genres } = useSelector<any, any>((state) => state.details);
   const { actualPage, totalPages } = useSelector<any, any>(
     (state) => state.pager
   );
+  console.log(page);
 
   useEffect(() => {
     if (movies) {
@@ -42,17 +43,21 @@ const Movies: React.FC = () => {
     }
   }, [sortBy]);
 
-  useEffect(() => {
+  console.log(movies);
+
+  {
+    /*useEffect(() => {
     if (year) {
       getMoviesSortList();
     }
-  }, [year]);
+  }, [year]);*/
+  }
 
   const filteredMovies = movies.filter((e: any) => e.poster_path !== null);
 
   const handlePage = (newPage: number | boolean) => {
     const newLocation = {
-      pathname: '/movies',
+      pathname: "/movies",
       search: `?page=${newPage}`,
     };
     history.push(newLocation);
@@ -61,7 +66,7 @@ const Movies: React.FC = () => {
   return (
     <div className="pt-32 px-4">
       <Subtitle label="Movies"></Subtitle>
-      <SortMenu />
+      <SortMenu filmType="movies" />
       <div className="flex flex-wrap justify-center">
         {movies?.length &&
           genres?.length &&
@@ -87,13 +92,13 @@ const Movies: React.FC = () => {
                 overview={overview}
                 release_date={release_date && release_date.slice(0, 4)}
                 vote_average={vote_average}
-                filmType="Movie"
+                filmType="movie"
                 genre_ids={
                   genres?.length &&
                   genre_ids?.length &&
                   genres.filter((e: any) => {
                     return e.id === genre_ids[0];
-                  })[0].name
+                  })[0]?.name
                 }
                 id={id}
               />
