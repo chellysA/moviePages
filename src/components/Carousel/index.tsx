@@ -67,7 +67,7 @@ const Carousel: React.FC = () => {
                           genre_ids?.length &&
                           genres.filter((e: any) => {
                             return e.id === genre_ids[0];
-                          })[0].name
+                          })[0]?.name
                         }
                         id={id}
                       />

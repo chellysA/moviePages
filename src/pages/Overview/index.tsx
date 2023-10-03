@@ -9,7 +9,6 @@ import useGetCredits from "../../hooks/api/useGetCredits";
 import env from "../../constants/Enviroments";
 import useGetSimilar from "../../hooks/api/useGetSimilar";
 import FilmPosters, { IFilmPosterProps } from "../../components/FilmPosters";
-import useGetGenre from "../../hooks/api/useGetGenre";
 import Subtitle from "../../components/Subtitle";
 
 const Overview = ({ filmType }: any) => {
@@ -21,18 +20,18 @@ const Overview = ({ filmType }: any) => {
   const { getDetails } = useGetDetails(id, filmType);
   const { getCredits } = useGetCredits(id, filmType);
   const { getSimilar } = useGetSimilar(id, filmType);
-  const { getGenre } = useGetGenre(filmType); // esto esta demas
 
   useEffect(() => {
     getDetails();
     getCredits();
     getVideos();
     getSimilar();
-    getGenre();
   }, [id]);
 
   const imdb = details.vote_average?.toFixed(1);
+
   let regex = /[,]/;
+
   const country =
     details.production_countries &&
     details.production_countries.map((e: any) => e.name).join(", ");
@@ -55,6 +54,7 @@ const Overview = ({ filmType }: any) => {
     details.production_companies && details.production_companies[0]?.name;
 
   const filteredSimilar = similar.filter((e: any) => e.poster_path !== null);
+
   return (
     <>
       <Section>
@@ -74,16 +74,16 @@ const Overview = ({ filmType }: any) => {
             </>
           )}
           <hr className="mb-10"></hr>
-          <div className="flex mb-10">
+          <div className="flex flex-col md:flex-row items-center md:items-start mb-10">
             <div>
               <img
                 src={`${env.URL_POSTER + details.poster_path}`}
                 width={300}
                 alt=""
-                className="border-double border-8 border-gray-50 rounded-lg"
+                className="border-double border-8 border-gray-50 rounded-lg mb-8 max-w-[200px] md:max-w-full"
               />
             </div>
-            <div className="w-3/4 ml-8">
+            <div className="w-full md:w-3/4 ml-8">
               <h1>
                 {details.original_title ? details.original_title : details.name}
               </h1>
@@ -100,50 +100,50 @@ const Overview = ({ filmType }: any) => {
                 </p>
               </div>
               <p className="text-gray-50">{details.overview}</p>
-              <div className="flex justify-between w-3/5">
-                <div>
-                  {country && (
-                    <p className="text-gray-50">
-                      {regex.test(country) ? "Countries:" : "Country:"}
-                    </p>
-                  )}
-                  {genre && <p className="text-gray-50">Genre:</p>}
-                  {details.release_date ||
-                    (details.first_air_date && (
-                      <p className="text-gray-50">Released:</p>
-                    ))}
-                  {cast && <p className="text-gray-50">Cast:</p>}
-                  {productionCompany && (
-                    <p className="text-gray-50">Produced by:</p>
-                  )}
-                </div>
-                <div>
-                  {country && <p className="text-gray-50">{country}</p>}
-                  {genre && <p className="text-gray-50">{genre}</p>}
-                  {details.release_date ||
-                    (details.first_air_date && (
-                      <p className="text-gray-50">
-                        {details.release_date
-                          ? details.release_date.slice(0, 4)
-                          : details.first_air_date.slice(0, 4)}
-                      </p>
-                    ))}
-                  {cast && <p className="text-gray-50">{cast}</p>}
-                  {productionCompany && (
-                    <p className="text-gray-50">{productionCompany}</p>
-                  )}
-                </div>
+              <div className="grid grid-cols-2 grid-rows-4 p-0 gap-2 md:w-3/4">
+                {country && (
+                  <p className="text-gray-50">
+                    {regex.test(country) ? "Countries:" : "Country:"}
+                  </p>
+                )}
+                {country && <p className="text-gray-50">{country}</p>}
+                {genre && <p className="text-gray-50">Genre:</p>}
+                {genre && <p className="text-gray-50">{genre}</p>}
+                {details.release_date && (
+                  <p className="text-gray-50">Released:</p>
+                )}
+                {details.first_air_date && (
+                  <p className="text-gray-50">Released:</p>
+                )}
+                {details.release_date && (
+                  <p className="text-gray-50">
+                    {details.release_date.slice(0, 4)}
+                  </p>
+                )}
+                {details.first_air_date && (
+                  <p className="text-gray-50">
+                    {details.first_air_date.slice(0, 4)}
+                  </p>
+                )}
+                {cast && <p className="text-gray-50">Cast:</p>}
+                {cast && <p className="text-gray-50">{cast}</p>}
+                {productionCompany && (
+                  <p className="text-gray-50">Produced by:</p>
+                )}
+
+                {productionCompany && (
+                  <p className="text-gray-50">{productionCompany}</p>
+                )}
               </div>
             </div>
           </div>
         </div>
       </Section>
-      {!!similar.length && (
+      {!!filteredSimilar.length && (
         <>
           <Subtitle label="You May Also Like" />
           <div className="flex flex-wrap justify-center mt-10">
             {similar?.length &&
-              genres?.length &&
               filteredSimilar
                 .slice(0, 10)
                 .map(
@@ -157,6 +157,7 @@ const Overview = ({ filmType }: any) => {
                       first_air_date,
                       vote_average,
                       genre_ids,
+                      name,
                       id,
                     }: IFilmPosterProps,
                     index: any
@@ -165,7 +166,7 @@ const Overview = ({ filmType }: any) => {
                       key={index}
                       poster_path={`${env.URL_POSTER + poster_path}`}
                       backdrop_path={`${env.URL_POSTER + backdrop_path}`}
-                      original_title={original_title}
+                      original_title={original_title ? original_title : name}
                       overview={overview}
                       release_date={
                         release_date

@@ -41,7 +41,7 @@ const FilmPosters = ({
           <img
             src={poster_path}
             alt=""
-            className="relative rounded-md min-h-[300px] max-h-[300px]"
+            className="rounded-md min-h-[300px] max-h-[300px]"
           ></img>
 
           <p className="text-gray-100 truncate py-2 m-0">

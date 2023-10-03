@@ -1,3 +1,4 @@
+import useQueryParams from "../../hooks/useQueryParams";
 import React from "react";
 import { useHistory } from "react-router-dom";
 
@@ -13,7 +14,6 @@ const SortMenu = ({ filmType }: ISortMenu) => {
       pathname: `/${filmType}`,
       search: "?sort_by=primary_release_date.desc",
     };
-
     history.push(newLocation);
   };
 

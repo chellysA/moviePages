@@ -52,9 +52,9 @@ const Home: React.FC = () => {
       <Carousel />
       <Brief />
       <Section>
-        <div className="flex px-8 py-4">
+        <div className="flex flex-col px-8 py-4">
           <Subtitle label="Trending" />
-          <div className="flex justify-between w-[250px]">
+          <div className="flex justify-between w-[250px] mt-4">
             <Link to="/movies" className="no-underline">
               <Button
                 label="Movies"

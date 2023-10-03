@@ -19,13 +19,12 @@ const Movies: React.FC = () => {
   //const year = queries.get("primary_release_year");
   const { getMovies } = useGetMovies(page ?? "1");
   const { getGenre } = useGetGenre("movie");
-  const { getMoviesSortList } = useGetMoviesSortList(sortBy, "1");
+  const { getMoviesSortList } = useGetMoviesSortList(sortBy, page);
   const { movies } = useSelector<any, any>((state) => state.movies);
   const { genres } = useSelector<any, any>((state) => state.details);
   const { actualPage, totalPages } = useSelector<any, any>(
     (state) => state.pager
   );
-  console.log(page);
 
   useEffect(() => {
     if (movies) {
@@ -43,8 +42,6 @@ const Movies: React.FC = () => {
     }
   }, [sortBy]);
 
-  console.log(movies);
-
   {
     /*useEffect(() => {
     if (year) {
@@ -54,11 +51,17 @@ const Movies: React.FC = () => {
   }
 
   const filteredMovies = movies.filter((e: any) => e.poster_path !== null);
-
   const handlePage = (newPage: number | boolean) => {
+    const hasPage = queries.has("page");
+    if (hasPage) {
+      queries.set("page", newPage.toString());
+    } else {
+      queries.append("page", newPage.toString());
+    }
+    console.log(queries.toString());
     const newLocation = {
       pathname: "/movies",
-      search: `?page=${newPage}`,
+      search: queries.toString(),
     };
     history.push(newLocation);
   };
