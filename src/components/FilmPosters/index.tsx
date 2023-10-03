@@ -62,9 +62,13 @@ const FilmPosters = ({
         </div>
         <div
           id="descriptionFilm"
-          className="absolute top-[0px] w-full h-max bg-black"
+          className="absolute top-[0px] w-full h-[385px]  bg-black"
         >
-          <img src={backdrop_path} alt="" className="rounded-md mb-2"></img>
+          {backdrop_path === null ? (
+            <img src={backdrop_path} alt="" className="rounded-md mb-2"></img>
+          ) : (
+            <div className="w-full h-[100px]"></div>
+          )}
           <p className="text-gray-100 text-[14px] h-[190px] overflow-hidden">
             {overview}
           </p>

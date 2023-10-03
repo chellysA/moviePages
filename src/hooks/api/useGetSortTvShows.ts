@@ -6,7 +6,8 @@ import { addTvShows } from "../../redux/tvShowsSlice";
 
 const useGetSortTvShows = (
   sortBy: string | null,
-  actualPage?: string | null
+  actualPage?: string | null,
+  year?: string | null
 ) => {
   const dispatch = useDispatch();
 
@@ -14,7 +15,11 @@ const useGetSortTvShows = (
     const {
       data: { results, total_pages, page },
     } = await axios.get(
-      `${env.API_URL}/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=${actualPage}&sort_by=${sortBy}`,
+      `${env.API_URL}/discover/tv?${
+        year
+          ? `first_air_date_year=${year}&include_adult=false&include_null_first_air_dates=false&language=en-US&page=${actualPage}&sort_by=popularity.desc`
+          : `&include_adult=false&include_null_first_air_dates=false&language=en-US&page=${actualPage}&sort_by=${sortBy}`
+      }`,
       {
         params: {
           api_key: env.API_KEY,

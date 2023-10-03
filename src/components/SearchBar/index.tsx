@@ -1,15 +1,15 @@
-import useQueryParams from '../../hooks/useQueryParams';
-import useGetSearcher from '../../hooks/api/useGetSearcher';
-import React, { useEffect } from 'react';
-import { FaSearch } from 'react-icons/fa';
-import { useHistory } from 'react-router-dom';
+import useQueryParams from "../../hooks/useQueryParams";
+import useGetSearcher from "../../hooks/api/useGetSearcher";
+import React, { useEffect } from "react";
+import { FaSearch } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
 
 const SearchBar = () => {
   const queries = useQueryParams();
-  const movieTitle = queries.get('q');
-  const page = queries.get('page');
+  const movieTitle = queries.get("q");
+  const page = queries.get("page");
   const history = useHistory();
-  const { getSearcher } = useGetSearcher(movieTitle, page ?? '1');
+  const { getSearcher } = useGetSearcher(movieTitle, page ?? "1");
 
   useEffect(() => {
     if (movieTitle) {
@@ -17,16 +17,18 @@ const SearchBar = () => {
     }
   }, [movieTitle]);
 
-  const handleSearch = (e: any) => {
+  {
+    /*const handleSearch = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       const newLocation = {
-        pathname: '/search',
+        pathname: "/search",
         search: `?q=${e.target.value}`,
       };
 
       history.push(newLocation);
     }
-  };
+  };*/
+  }
 
   return (
     <>
@@ -41,7 +43,7 @@ const SearchBar = () => {
           type="text"
           placeholder="Enter keywords..."
           className="border-none bg-transparent text-white w-full text-[14px]"
-          onKeyDown={handleSearch}
+          onKeyDown={() => {}}
         />
       </div>
     </>

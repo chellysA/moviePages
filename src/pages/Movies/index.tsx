@@ -16,10 +16,10 @@ const Movies: React.FC = () => {
   const history = useHistory();
   const page = queries.get("page");
   const sortBy = queries.get("sort_by");
-  //const year = queries.get("primary_release_year");
+  const year = queries.get("primary_release_year");
   const { getMovies } = useGetMovies(page ?? "1");
   const { getGenre } = useGetGenre("movie");
-  const { getMoviesSortList } = useGetMoviesSortList(sortBy, page);
+  const { getMoviesSortList } = useGetMoviesSortList(sortBy, page, year);
   const { movies } = useSelector<any, any>((state) => state.movies);
   const { genres } = useSelector<any, any>((state) => state.details);
   const { actualPage, totalPages } = useSelector<any, any>(
@@ -33,24 +33,19 @@ const Movies: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    getMovies();
-  }, [page]);
+    if (!sortBy) {
+      getMovies();
+    }
+  }, [page, sortBy]);
 
   useEffect(() => {
-    if (sortBy) {
+    if (sortBy || year || page) {
       getMoviesSortList();
     }
-  }, [sortBy]);
-
-  {
-    /*useEffect(() => {
-    if (year) {
-      getMoviesSortList();
-    }
-  }, [year]);*/
-  }
+  }, [sortBy, page, year]);
 
   const filteredMovies = movies.filter((e: any) => e.poster_path !== null);
+
   const handlePage = (newPage: number | boolean) => {
     const hasPage = queries.has("page");
     if (hasPage) {
@@ -58,7 +53,7 @@ const Movies: React.FC = () => {
     } else {
       queries.append("page", newPage.toString());
     }
-    console.log(queries.toString());
+    console.log(queries);
     const newLocation = {
       pathname: "/movies",
       search: queries.toString(),

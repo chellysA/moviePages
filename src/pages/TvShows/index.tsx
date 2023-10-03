@@ -17,8 +17,8 @@ const TvShows = () => {
   const queries = useQueryParams();
   const page = queries.get("page");
   const sortBy = queries.get("sort_by");
-  //const year = queries.get("primary_release_year");
-  const { getSortTvShows } = useGetSortTvShows(sortBy, "1");
+  const year = queries.get("primary_release_year");
+  const { getSortTvShows } = useGetSortTvShows(sortBy, page, year);
   const { getTvShows } = useGetTvShows(page ?? "1");
   const { getGenre } = useGetGenre("tv");
   const { tvShows } = useSelector<any, any>((state) => state.tvShows);
@@ -28,8 +28,10 @@ const TvShows = () => {
   );
 
   useEffect(() => {
-    getTvShows();
-  }, [page]);
+    if (!sortBy) {
+      getTvShows();
+    }
+  }, [page, sortBy]);
 
   useEffect(() => {
     if (tvShows) {
@@ -38,23 +40,23 @@ const TvShows = () => {
   }, []);
 
   useEffect(() => {
-    if (sortBy) {
+    if (sortBy || year || page) {
       getSortTvShows();
     }
-  }, [sortBy]);
+  }, [sortBy, page, year]);
 
-  {
-    /*  useEffect(() => {
-    if (year) {
-      getSortTvShows();
-    }
-  }, [year]);*/
-  }
   const filteredTvShows = tvShows.filter((e: any) => e.poster_path !== null);
+
   const handlePage = (newPage: number | boolean) => {
+    const hasPage = queries.has("page");
+    if (hasPage) {
+      queries.set("page", newPage.toString());
+    } else {
+      queries.append("page", newPage.toString());
+    }
     const newLocation = {
       pathname: "/tv_shows",
-      search: `?page=${newPage}`,
+      search: queries.toString(),
     };
     history.push(newLocation);
   };
