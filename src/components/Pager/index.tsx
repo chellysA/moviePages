@@ -1,8 +1,8 @@
-import React from 'react';
-import PagerButtons from '../PagerButtons';
-import { MdKeyboardDoubleArrowLeft } from 'react-icons/md';
-import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
-import { FiMoreHorizontal } from 'react-icons/fi';
+import React from "react";
+import PagerButtons from "../PagerButtons";
+import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { FiMoreHorizontal } from "react-icons/fi";
 
 interface IPagerProps {
   totalPages: number;

@@ -17,7 +17,7 @@ import env from "../../constants/Enviroments";
 
 const Home: React.FC = () => {
   const queries = useQueryParams();
-  const page = queries.get("page"); // Toma el valor del query search page por ejemplo ?page=1
+  const page = queries.get("page");
   const { getNowPlaying } = useGetNowPlaying(page ?? "1");
   const { getGenre } = useGetGenre("movie");
   const { nowPlaying } = useSelector<any, any>((state) => state.nowPlaying);
@@ -38,6 +38,12 @@ const Home: React.FC = () => {
     getNowPlaying();
   }, [page]);
 
+  useEffect(() => {
+    if (actualPage > "1") {
+      window.scrollTo(880, 880);
+    }
+  }, [actualPage]);
+
   const handlePage = (newPage: number | boolean) => {
     const newLocation = {
       pathname: "/",
@@ -52,9 +58,9 @@ const Home: React.FC = () => {
       <Carousel />
       <Brief />
       <Section>
-        <div className="flex px-8 py-4">
+        <div className="flex flex-col px-8 py-4">
           <Subtitle label="Trending" />
-          <div className="flex justify-between w-[250px]">
+          <div className="flex justify-between w-[250px] mt-4">
             <Link to="/movies" className="no-underline">
               <Button
                 label="Movies"

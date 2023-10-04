@@ -16,16 +16,15 @@ const Movies: React.FC = () => {
   const history = useHistory();
   const page = queries.get("page");
   const sortBy = queries.get("sort_by");
-  //const year = queries.get("primary_release_year");
+  const year = queries.get("primary_release_year");
   const { getMovies } = useGetMovies(page ?? "1");
   const { getGenre } = useGetGenre("movie");
-  const { getMoviesSortList } = useGetMoviesSortList(sortBy, "1");
+  const { getMoviesSortList } = useGetMoviesSortList(sortBy, page, year);
   const { movies } = useSelector<any, any>((state) => state.movies);
   const { genres } = useSelector<any, any>((state) => state.details);
   const { actualPage, totalPages } = useSelector<any, any>(
     (state) => state.pager
   );
-  console.log(page);
 
   useEffect(() => {
     if (movies) {
@@ -34,31 +33,38 @@ const Movies: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    getMovies();
-  }, [page]);
+    if (queries.size === 0) {
+      getMovies();
+    }
+  }, [queries]);
 
   useEffect(() => {
-    if (sortBy) {
+    if (sortBy || year) {
       getMoviesSortList();
     }
-  }, [sortBy]);
+  }, [sortBy, year]);
 
-  console.log(movies);
-
-  {
-    /*useEffect(() => {
-    if (year) {
+  useEffect(() => {
+    if (sortBy || year) {
       getMoviesSortList();
+    } else {
+      getMovies();
     }
-  }, [year]);*/
-  }
+  }, [page]);
 
   const filteredMovies = movies.filter((e: any) => e.poster_path !== null);
 
   const handlePage = (newPage: number | boolean) => {
+    const hasPage = queries.has("page");
+    if (hasPage) {
+      queries.set("page", newPage.toString());
+    } else {
+      queries.append("page", newPage.toString());
+    }
+    console.log(queries);
     const newLocation = {
       pathname: "/movies",
-      search: `?page=${newPage}`,
+      search: queries.toString(),
     };
     history.push(newLocation);
   };
@@ -87,7 +93,11 @@ const Movies: React.FC = () => {
               <FilmPosters
                 key={index}
                 poster_path={`${env.URL_POSTER + poster_path}`}
-                backdrop_path={`${env.URL_POSTER + backdrop_path}`}
+                backdrop_path={
+                  backdrop_path !== null
+                    ? `${env.URL_POSTER + backdrop_path}`
+                    : ""
+                }
                 original_title={original_title}
                 overview={overview}
                 release_date={release_date && release_date.slice(0, 4)}
