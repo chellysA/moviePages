@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="w-full h-max flex p-4">
         <div className="w-3/4 md:mr-14">
           <img src={logo} alt="" className="w-[100px] h-[40px] my-4"></img>
-          <p className=" h-[130px] overflow-hidden">
+          <p className="text-[12px] md:text-[15px] h-[130px] overflow-hidden">
             FMovies is the best free streaming site 2023, where you can watch
             movies online for free, no registration required. With a large
             database and great features, we're confident that FMovies is the
