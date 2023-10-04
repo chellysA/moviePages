@@ -52,7 +52,9 @@ const FilmPosters = ({
               className="no-underline absolute bottom-[10px] left-[25px] bg-gray-60 rounded-[50px]"
             >
               <Button
-                icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
+                icon={
+                  <BsFillPlayFill className="h-[15%] w-[15%] md:h-[30px] md:w-[30px]" />
+                }
                 label="Whatch now"
                 border={true}
               />
