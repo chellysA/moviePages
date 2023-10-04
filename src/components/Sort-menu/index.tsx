@@ -58,19 +58,12 @@ const SortMenu = ({ filmType }: ISortMenu) => {
           >
             Most Voted
           </a>
-          ·
-          <a
-            href=""
-            className="no-underline text-principal-200 pl-3 hover:text-white pointer-events-none"
-          >
-            Year
-          </a>
         </span>
       </div>
       <input
         type="text"
-        placeholder="type a year"
-        className="bg-gray-10 h-[39px] w-[70px] text-[14px] text-center rounded-sm text-gray-100 py-2"
+        placeholder="Year"
+        className="bg-gray-10 h-[39px] w-[70px] text-[14px] text-center rounded-sm text-gray-100 py-2 text-principal-200"
         onChange={handleYear}
       />
     </div>
