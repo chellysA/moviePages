@@ -28,22 +28,30 @@ const TvShows = () => {
   );
 
   useEffect(() => {
-    if (!sortBy) {
-      getTvShows();
-    }
-  }, [page, sortBy]);
-
-  useEffect(() => {
     if (tvShows) {
       getGenre();
     }
   }, []);
 
   useEffect(() => {
-    if (sortBy || year || page) {
+    if (queries.size === 0) {
+      getTvShows();
+    }
+  }, [queries]);
+
+  useEffect(() => {
+    if (sortBy || year) {
       getSortTvShows();
     }
-  }, [sortBy, page, year]);
+  }, [sortBy, year]);
+
+  useEffect(() => {
+    if (sortBy || year) {
+      getSortTvShows();
+    } else {
+      getTvShows();
+    }
+  }, [page]);
 
   const filteredTvShows = tvShows.filter((e: any) => e.poster_path !== null);
 

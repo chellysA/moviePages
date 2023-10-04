@@ -33,16 +33,24 @@ const Movies: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!sortBy) {
+    if (queries.size === 0) {
       getMovies();
     }
-  }, [page, sortBy]);
+  }, [queries]);
 
   useEffect(() => {
-    if (sortBy || year || page) {
+    if (sortBy || year) {
       getMoviesSortList();
     }
-  }, [sortBy, page, year]);
+  }, [sortBy, year]);
+
+  useEffect(() => {
+    if (sortBy || year) {
+      getMoviesSortList();
+    } else {
+      getMovies();
+    }
+  }, [page]);
 
   const filteredMovies = movies.filter((e: any) => e.poster_path !== null);
 
@@ -85,7 +93,11 @@ const Movies: React.FC = () => {
               <FilmPosters
                 key={index}
                 poster_path={`${env.URL_POSTER + poster_path}`}
-                backdrop_path={`${env.URL_POSTER + backdrop_path}`}
+                backdrop_path={
+                  backdrop_path !== null
+                    ? `${env.URL_POSTER + backdrop_path}`
+                    : ""
+                }
                 original_title={original_title}
                 overview={overview}
                 release_date={release_date && release_date.slice(0, 4)}
