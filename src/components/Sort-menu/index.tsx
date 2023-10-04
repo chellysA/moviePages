@@ -1,5 +1,4 @@
 import React from "react";
-import { BiSearch } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 
 interface ISortMenu {
@@ -40,8 +39,8 @@ const SortMenu = ({ filmType }: ISortMenu) => {
   };
 
   return (
-    <div className="flex flex-wrap justify-end mt-4 mb-10">
-      <div className="bg-gray-10 w-max h-[39px] rounded-sm px-3 mr-2 py-2 text-gray-100 text-[15px]">
+    <div className="flex flex-wrap justify-center md:justify-end mt-4 mb-10">
+      <div className="bg-gray-10 w-max h-[39px] rounded-sm px-2 py-2 mr-2 text-gray-100 text-[15px]">
         Sort by
         <span>
           <a
@@ -62,7 +61,7 @@ const SortMenu = ({ filmType }: ISortMenu) => {
           ·
           <a
             href=""
-            className="no-underline text-principal-200 px-3 hover:text-white pointer-events-none"
+            className="no-underline text-principal-200 pl-3 hover:text-white pointer-events-none"
           >
             Year
           </a>
@@ -71,7 +70,7 @@ const SortMenu = ({ filmType }: ISortMenu) => {
       <input
         type="text"
         placeholder="type a year"
-        className="bg-gray-10 h-[39px] w-[100px]  text-center rounded-sm text-gray-100 py-2"
+        className="bg-gray-10 h-[39px] w-[70px] text-[14px] text-center rounded-sm text-gray-100 py-2"
         onChange={handleYear}
       />
     </div>
