@@ -70,10 +70,10 @@ const Movies: React.FC = () => {
   };
 
   return (
-    <div className="pt-32 px-4">
+    <div id="container" className="pt-32 px-4 flex flex-column">
       <Subtitle label="Movies"></Subtitle>
       <SortMenu filmType="movies" />
-      <div className="flex flex-wrap justify-center">
+      <div className="flex grow flex-wrap justify-center ">
         {movies?.length &&
           genres?.length &&
           filteredMovies.map(

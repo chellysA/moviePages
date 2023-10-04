@@ -34,3 +34,6 @@ li {
 #descriptionFilm {
   visibility: hidden;
 }
+#container {
+  min-height: calc(100vh - 300px);
+}

@@ -70,11 +70,11 @@ const TvShows = () => {
   };
 
   return (
-    <div className="pt-32 px-4">
+    <div id="container" className="pt-32 px-4 flex flex-column">
       <Subtitle label="TV Shows"></Subtitle>
       <SortMenu filmType="tv_shows" />
       <Section>
-        <div className="flex flex-wrap justify-center">
+        <div className="flex flex-wrap grow justify-center">
           {tvShows?.length &&
             genres.length &&
             filteredTvShows.map(
