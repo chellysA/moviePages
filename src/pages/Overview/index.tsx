@@ -174,7 +174,11 @@ const Overview = ({ filmType }: any) => {
                           : first_air_date?.slice(0, 4)
                       }
                       vote_average={vote_average?.toFixed(1)}
+<<<<<<< HEAD
                       filmType={filmType === "tv" ? "TvShow" : "Movie"}
+=======
+                      filmType={filmType}
+>>>>>>> 333bc77 (fix  filmtype at overview)
                       genre_ids={
                         genres?.length &&
                         genre_ids?.length &&
