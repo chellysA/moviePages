@@ -56,9 +56,9 @@ const Overview = ({ filmType }: any) => {
   const filteredSimilar = similar.filter((e: any) => e.poster_path !== null);
 
   return (
-    <>
+    <div id="container" className="flex flex-column">
       <Section>
-        <div className="px-8 text-gray-100 pt-24">
+        <div className="px-8 text-gray-100 pt-24 grow">
           <h1 className="">
             {details.original_title ? details.original_title : details.name}
           </h1>
@@ -189,7 +189,7 @@ const Overview = ({ filmType }: any) => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 
