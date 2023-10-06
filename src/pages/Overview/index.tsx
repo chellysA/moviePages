@@ -174,7 +174,7 @@ const Overview = ({ filmType }: any) => {
                           : first_air_date?.slice(0, 4)
                       }
                       vote_average={vote_average?.toFixed(1)}
-                      filmType="tv_shows"
+                      filmType={filmType === "tv" ? "TvShow" : "Movie"}
                       genre_ids={
                         genres?.length &&
                         genre_ids?.length &&

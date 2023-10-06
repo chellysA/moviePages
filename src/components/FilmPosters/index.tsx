@@ -3,6 +3,7 @@ import { AiFillStar } from "react-icons/ai";
 import Button from "../Button";
 import { BsFillPlayFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "../../hooks/useIsMobile";
 export interface IFilmPosterProps {
   overview?: string;
   quality?: string;
@@ -31,19 +32,32 @@ const FilmPosters = ({
   first_air_date,
   id,
 }: IFilmPosterProps) => {
+  const mobile = useIsMobile();
+
   return (
     <>
       <div
         id="filmPoster"
         className="relative w-[200px] h-[300px] mb-[120px] mx-6"
       >
-        <div id="nohover">
+        <div id="nohover" className="">
           <img
             src={poster_path}
             alt=""
             className="rounded-md min-h-[300px] max-h-[300px]"
           ></img>
-
+          {mobile && (
+            <Link
+              to={`/${filmType}/${id}`}
+              className="no-underline absolute bottom-[10px] left-[25px] bg-gray-60 rounded-[50px]"
+            >
+              <Button
+                icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
+                label="Whatch now"
+                border={true}
+              />
+            </Link>
+          )}
           <p className="text-gray-100 truncate py-2 m-0">
             {original_title || name}
           </p>
@@ -54,39 +68,41 @@ const FilmPosters = ({
             <div className="w-[5px] h-[5px] bg-gray-100 rounded-md mt-2 mx-1"></div>
             <p className="text-[15px] truncate">{genre_ids}</p>
             <div>
-              <p className="text-gray-50 text-[13px] border px-1 rounded-md ml-4">
-                {filmType}
+              <p className="text-gray-50 text-[13px] border px-1 rounded-md ml-2">
+                {filmType === "tv_shows" ? "TvShow" : "Movie"}
               </p>
             </div>
           </div>
         </div>
-        <div
-          id="descriptionFilm"
-          className="absolute top-[0px] w-full h-[385px]  bg-black"
-        >
-          <img
-            src={backdrop_path}
-            alt=""
-            className="rounded-md mb-2 h-[105px]"
-          ></img>
+        {!mobile && (
+          <div
+            id="descriptionFilm"
+            className="absolute top-[0px] w-full h-[385px] bg-black"
+          >
+            <img
+              src={backdrop_path}
+              alt=""
+              className="rounded-md mb-2 h-[105px]"
+            ></img>
 
-          <p className="text-gray-100 text-[14px] h-[190px] overflow-hidden">
-            {overview}
-          </p>
-          <div className="flex justify-start mb-1">
-            <AiFillStar className="text-principal-200 mb-1" />
-            <p className="text-[13px] text-white m-0">{vote_average}</p>
+            <p className="text-gray-100 text-[14px] h-[190px] overflow-hidden">
+              {overview}
+            </p>
+            <div className="flex justify-start mb-1">
+              <AiFillStar className="text-principal-200 mb-1" />
+              <p className="text-[13px] text-white m-0">{vote_average}</p>
+            </div>
+            <div className="flex justify-center">
+              <Link to={`/${filmType}/${id}`} className="no-underline">
+                <Button
+                  icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
+                  label="Whatch now"
+                  border={true}
+                />
+              </Link>
+            </div>
           </div>
-          <div className="flex justify-center">
-            <Link to={`/${filmType}/${id}`} className="no-underline">
-              <Button
-                icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
-                label="Whatch now"
-                border={true}
-              />
-            </Link>
-          </div>
-        </div>
+        )}
       </div>
     </>
   );
