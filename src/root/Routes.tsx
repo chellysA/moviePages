@@ -16,6 +16,7 @@ const Routes: React.FC = () => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [location]);
 
+  // Usar en path las rutas definidas en el archivo routes.ts
   return (
     <div ref={scrollRef}>
       <Switch>

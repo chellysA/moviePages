@@ -4,7 +4,7 @@ import logo from "../../assets/logo.png";
 import { FaSearch } from "react-icons/fa";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { AiOutlineClose } from "react-icons/ai";
-import SearchBar from "../SearchBar";
+import SearchBar from "../SearchBar"; // Delete lo que no uses
 interface IStatLink {
   link: string;
   label: string;
@@ -21,10 +21,19 @@ const StatLink = ({ link, label, onClick }: IStatLink) => {
       <li className="text-sm hover:text-principal-200 w-max">{label}</li>
     </NavLink>
   );
-};
+}; // Volver esto un solo comoponente cporque los usa en el footer tambien y es practiamente los mismo
 
 const NavBar: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
+
+  // Colocar en una constant en la carpeta constants/routes.ts con la rutas de la applicacion
+  /**
+   const routes = {
+    HOME: "/";
+    MOVIES: "/movies"
+   }
+    
+   */
   return (
     <>
       <div
