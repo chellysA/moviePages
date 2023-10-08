@@ -21,13 +21,14 @@ li {
     rgba(0, 0, 0, 1) 80%
   );
 }
+@media screen and (min-width: 768px) {
+  #filmPoster:hover > #nohover {
+    visibility: hidden;
+  }
 
-#filmPoster:hover > #nohover {
-  visibility: hidden;
-}
-
-#filmPoster:hover > #descriptionFilm {
-  visibility: visible;
+  #filmPoster:hover > #descriptionFilm {
+    visibility: visible;
+  }
 }
 
 #descriptionFilm {

@@ -3,6 +3,7 @@ import { AiFillStar } from "react-icons/ai";
 import Button from "../Button";
 import { BsFillPlayFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "../../hooks/useIsMobile";
 export interface IFilmPosterProps {
   overview?: string;
   quality?: string;
@@ -31,19 +32,38 @@ const FilmPosters = ({
   first_air_date,
   id,
 }: IFilmPosterProps) => {
+  const mobile = useIsMobile();
+
   return (
     <>
       <div
         id="filmPoster"
         className={`relative w-[40%] h-[60%] md:w-[200px] md:h-[300px] mb-[10%] md:mb-[120px] mx-2 md:mx-6`}
       >
-        <div id="nohover">
-          <img
-            src={poster_path}
-            alt=""
-            className="rounded-md min-h-[200px] w-full max-h-[300px]"
-          ></img>
-
+        <div id="nohover" className="">
+          <div className="relative">
+            <img
+              src={poster_path}
+              alt=""
+              className="rounded-md min-h-[200px] w-full max-h-[300px]"
+            ></img>
+            {mobile && (
+              <div className="w-full flex justify-center absolute bottom-[8px]">
+                <Link
+                  to={`/${filmType}/${id}`}
+                  className="no-underline  bg-gray-60 rounded-[50px]"
+                >
+                  <Button
+                    icon={
+                      <BsFillPlayFill className="h-[15%] w-[15%] md:h-[30px] md:w-[30px]" />
+                    }
+                    label="Whatch now"
+                    border={true}
+                  />
+                </Link>
+              </div>
+            )}
+          </div>
           <p className="text-gray-100 truncate py-2 m-0">
             {original_title || name}
           </p>
@@ -62,37 +82,35 @@ const FilmPosters = ({
             </div>
           </div>
         </div>
-        <div
-          id="descriptionFilm"
-          className="absolute top-[0px] w-full h-[140%]  bg-black"
-        >
-          <img
-            src={backdrop_path}
-            alt=""
-            className="rounded-md mb-2 h-[20%] w-[90%] md:h-[105px]"
-          ></img>
+        {!mobile && (
+          <div
+            id="descriptionFilm"
+            className="absolute top-[0px] w-full h-[385px] bg-black"
+          >
+            <img
+              src={backdrop_path}
+              alt=""
+              className="rounded-md mb-2 h-[105px]"
+            ></img>
 
-          <p className="text-gray-100 text-[11px] md:text-[14px] h-[35%] md:h-[190px] overflow-hidden">
-            {overview}
-          </p>
-          <div className="flex justify-start mb-1">
-            <AiFillStar className="text-principal-200 mb-1" />
-            <p className="text-[11px] md:text-[13px] text-white m-0">
-              {vote_average}
+            <p className="text-gray-100 text-[14px] h-[190px] overflow-hidden">
+              {overview}
             </p>
+            <div className="flex justify-start mb-1">
+              <AiFillStar className="text-principal-200 mb-1" />
+              <p className="text-[13px] text-white m-0">{vote_average}</p>
+            </div>
+            <div className="flex justify-center">
+              <Link to={`/${filmType}/${id}`} className="no-underline">
+                <Button
+                  icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
+                  label="Whatch now"
+                  border={true}
+                />
+              </Link>
+            </div>
           </div>
-          <div className="flex justify-center">
-            <Link to={`/${filmType}/${id}`} className="no-underline">
-              <Button
-                icon={
-                  <BsFillPlayFill className="h-[15%] w-[15%] md:h-[30px] md:w-[30px]" />
-                }
-                label="Whatch now"
-                border={true}
-              />
-            </Link>
-          </div>
-        </div>
+        )}
       </div>
     </>
   );
