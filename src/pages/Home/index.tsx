@@ -30,7 +30,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     if (nowPlaying) {
-      getGenre();
+      getGenre(); // TODO Debes tratar de que pida los gener una sola vez ya que lo pides en varias vistas
     }
   }, []);
 

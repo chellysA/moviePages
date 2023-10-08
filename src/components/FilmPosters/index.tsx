@@ -41,25 +41,29 @@ const FilmPosters = ({
         className={`relative w-[40%] h-[60%] md:w-[200px] md:h-[300px] mb-[10%] md:mb-[120px] mx-2 md:mx-6`}
       >
         <div id="nohover" className="">
-          <img
-            src={poster_path}
-            alt=""
-            className="rounded-md min-h-[200px] w-full max-h-[300px]"
-          ></img>
-          {mobile && (
-            <Link
-              to={`/${filmType}/${id}`}
-              className="no-underline absolute bottom-[10px] left-[25px] bg-gray-60 rounded-[50px]"
-            >
-              <Button
-                icon={
-                  <BsFillPlayFill className="h-[15%] w-[15%] md:h-[30px] md:w-[30px]" />
-                }
-                label="Whatch now"
-                border={true}
-              />
-            </Link>
-          )}
+          <div className="relative">
+            <img
+              src={poster_path}
+              alt=""
+              className="rounded-md min-h-[200px] w-full max-h-[300px]"
+            ></img>
+            {mobile && (
+              <div className="w-full flex justify-center absolute bottom-[8px]">
+                <Link
+                  to={`/${filmType}/${id}`}
+                  className="no-underline  bg-gray-60 rounded-[50px]"
+                >
+                  <Button
+                    icon={
+                      <BsFillPlayFill className="h-[15%] w-[15%] md:h-[30px] md:w-[30px]" />
+                    }
+                    label="Whatch now"
+                    border={true}
+                  />
+                </Link>
+              </div>
+            )}
+          </div>
           <p className="text-gray-100 truncate py-2 m-0">
             {original_title || name}
           </p>
@@ -72,8 +76,8 @@ const FilmPosters = ({
               {genre_ids}
             </p>
             <div>
-              <p className="text-gray-50 text-[13px] border px-1 rounded-md ml-2">
-                {filmType === "tv_shows" ? "TvShow" : "Movie"}
+              <p className="text-gray-50 text-[10px] p-0 md:text-[13px] border px-1 rounded-md ml-1 md:ml-4">
+                {filmType}
               </p>
             </div>
           </div>
