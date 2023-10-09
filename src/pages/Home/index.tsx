@@ -17,14 +17,19 @@ import env from "../../constants/Enviroments";
 const Home: React.FC = () => {
   const queries = useQueryParams();
   const page = queries.get("page");
-  const { getNowPlaying } = useGetNowPlaying(page ?? "1");
+  const { getNowPlaying, isLoading } = useGetNowPlaying(page ?? "1");
   const { nowPlaying } = useSelector<any, any>((state) => state.nowPlaying);
   const { totalPages, actualPage } = useSelector<any, any>(
     (state) => state.pager
   );
 
   const { genres } = useSelector<any, any>((state) => state.details);
-  const history = useHistory();
+  const history = useHistory()
+
+  useEffect(() => { 
+    if(queries.size === 0 && !isLoading && !nowPlaying.length)
+    getNowPlaying();
+  }, [queries]);
 
   useEffect(() => { 
     getNowPlaying();

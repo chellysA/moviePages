@@ -53,7 +53,6 @@ const Movies: React.FC = () => {
     } else {
       queries.append("page", newPage.toString());
     }
-    console.log(queries);
     const newLocation = {
       pathname: "/movies",
       search: queries.toString(),

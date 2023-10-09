@@ -19,8 +19,8 @@ const TvShows = () => {
   const sortBy = queries.get("sort_by");
   const year = queries.get("primary_release_year");
   const { getSortTvShows } = useGetSortTvShows(sortBy, page, year);
-  const { getTvShows } = useGetTvShows(page ?? "1");
-  const { getGenre } = useGetGenre("tv");
+  const { getTvShows, isLoadingTv } = useGetTvShows(page ?? "1");
+  const { getGenre, isLoading } = useGetGenre("tv");
   const { tvShows } = useSelector<any, any>((state) => state.tvShows);
   const { genres } = useSelector<any, any>((state) => state.details);
   const { actualPage, totalPages } = useSelector<any, any>(
@@ -28,16 +28,16 @@ const TvShows = () => {
   );
 
   useEffect(() => {
-    if (tvShows) {
+    if (!isLoading && !tvShows.length && queries.size === 0) {
       getGenre();
     }
-  }, []);
+  }, [isLoading, queries]);
 
   useEffect(() => {
-    if (queries.size === 0) {
+    if (!isLoadingTv && queries.size === 0 && !tvShows.length) {
       getTvShows();
     }
-  }, [queries]);
+  }, [queries, isLoadingTv]);
 
   useEffect(() => {
     if (sortBy || year) {
@@ -48,10 +48,10 @@ const TvShows = () => {
   useEffect(() => {
     if (sortBy || year) {
       getSortTvShows();
-    } else {
+    } else if(queries.size !== 0) {
       getTvShows();
     }
-  }, [page]);
+  }, [page, queries]);
 
   const filteredTvShows = tvShows.filter((e: any) => e.poster_path !== null);
 
