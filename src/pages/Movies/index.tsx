@@ -19,7 +19,7 @@ const Movies: React.FC = () => {
   const { getMovies, isLoading } = useGetMovies(page ?? "1");
   const { getMoviesSortList } = useGetMoviesSortList(sortBy, page, year);
   const { movies } = useSelector<any, any>((state) => state.movies);
-  const { genres } = useSelector<any, any>((state) => state.details);
+  const { movieGenres } = useSelector<any, any>((state) => state.details);
   const { actualPage, totalPages } = useSelector<any, any>(
     (state) => state.pager
   );
@@ -66,7 +66,7 @@ const Movies: React.FC = () => {
       <SortMenu filmType="movies" />
       <div className="flex grow flex-wrap justify-center ">
         {movies?.length &&
-          genres?.length &&
+          movieGenres?.length &&
           filteredMovies.map(
             (
               {
@@ -95,9 +95,9 @@ const Movies: React.FC = () => {
                 vote_average={vote_average}
                 filmType="movie"
                 genre_ids={
-                  genres?.length &&
+                  movieGenres?.length &&
                   genre_ids?.length &&
-                  genres.filter((e: any) => {
+                  movieGenres.filter((e: any) => {
                     return e.id === genre_ids[0];
                   })[0]?.name
                 }

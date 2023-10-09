@@ -13,9 +13,11 @@ import Subtitle from "../../components/Subtitle";
 
 const Overview = ({ filmType }: any) => {
   const { id }: any = useParams();
-  const { videos, details, credits, similar, genres } = useSelector<any, any>(
+ 
+  const { videos, details, credits, similar,  movieGenres, tvGenres} = useSelector<any, any>(
     (state) => state.details
   );
+
   const { getVideos } = useGetVideos(id, filmType);
   const { getDetails } = useGetDetails(id, filmType);
   const { getCredits } = useGetCredits(id, filmType);
@@ -40,8 +42,10 @@ const Overview = ({ filmType }: any) => {
     return e.type === "Trailer";
   })[0]?.key;
 
-  const genre =
-    details.genres && details.genres.map((e: any) => e.name).join(", ");
+  const genre = filmType === "movie" ?
+    movieGenres && movieGenres.map((e: any) => e.name).slice(0,3).join(", ")  : tvGenres && tvGenres.map((e: any) => e.name).slice(0,3).join(", ")
+  
+  const filmTypeGenre = filmType === "movie" ? movieGenres : tvGenres
 
   const cast =
     credits &&
@@ -176,9 +180,9 @@ const Overview = ({ filmType }: any) => {
                       vote_average={vote_average?.toFixed(1)}
                       filmType={filmType === "tv" ? "TvShow" : "Movie"}
                       genre_ids={
-                        genres?.length &&
+                        filmTypeGenre?.length &&
                         genre_ids?.length &&
-                        genres.filter((e: any) => {
+                        filmTypeGenre.filter((e: any) => {
                           return e.id === genre_ids[0];
                         })[0]?.name
                       }
