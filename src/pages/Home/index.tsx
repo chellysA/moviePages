@@ -9,7 +9,6 @@ import FilmPosters from "../../components/FilmPosters";
 import useGetNowPlaying from "../../hooks/api/useGetNowPlaying";
 import { IFilmPosterProps } from "../../components/FilmPosters";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import useGetGenre from "../../hooks/api/useGetGenre";
 import Pager from "../../components/Pager";
 import { Link, useHistory } from "react-router-dom";
 import useQueryParams from "../../hooks/useQueryParams";
@@ -19,7 +18,6 @@ const Home: React.FC = () => {
   const queries = useQueryParams();
   const page = queries.get("page");
   const { getNowPlaying } = useGetNowPlaying(page ?? "1");
-  const { getGenre } = useGetGenre("movie");
   const { nowPlaying } = useSelector<any, any>((state) => state.nowPlaying);
   const { totalPages, actualPage } = useSelector<any, any>(
     (state) => state.pager
@@ -28,13 +26,7 @@ const Home: React.FC = () => {
   const { genres } = useSelector<any, any>((state) => state.details);
   const history = useHistory();
 
-  useEffect(() => {
-    if (nowPlaying) {
-      getGenre(); // TODO Debes tratar de que pida los gener una sola vez ya que lo pides en varias vistas
-    }
-  }, []);
-
-  useEffect(() => {
+  useEffect(() => { 
     getNowPlaying();
   }, [page]);
 
