@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   details: [],
   similar: [],
-  genres: [],
+  movieGenres: [],
+  tvGenres: [],
   videos: [],
   credits: [],
 };
@@ -16,8 +17,11 @@ export const detailsSlice = createSlice({
       const details = action.payload;
       state.details = details;
     },
-    addGenres: (state, action) => {
-      state.genres = action.payload;
+    addMovieGenres: (state, action) => {
+      state.movieGenres = action.payload;
+    },
+    addTvGenres: (state, action) => {
+      state.tvGenres = action.payload;
     },
     addVideos: (state, action) => {
       state.videos = action.payload;
@@ -31,6 +35,6 @@ export const detailsSlice = createSlice({
   },
 });
 
-export const { addDetails, addGenres, addVideos, addCredits, addSimilar } =
+export const { addDetails, addMovieGenres, addTvGenres, addVideos, addCredits, addSimilar } =
   detailsSlice.actions;
 export default detailsSlice.reducer;

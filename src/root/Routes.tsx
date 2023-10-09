@@ -7,19 +7,23 @@ import MostWatched from "../pages/MostWatched";
 import CommingSoon from "../pages/CommingSoon";
 import SearchResults from "../pages/SearchResults";
 import Overview from "../pages/Overview";
-import useGetGenre from "../hooks/api/useGetGenre";
+import useGetMovieGenre from "../hooks/api/useGetMovieGenre";
+import useGetTvGenre from "../hooks/api/useGetTvGenre";
 
 const Routes: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   let location = useLocation();
-  const { getGenre } = useGetGenre("movie");
+  const { getMovieGenre } = useGetMovieGenre();
+  const {getTvGenre} = useGetTvGenre()
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [location]);
 
 useEffect(()=>{
-getGenre()
+getMovieGenre()
+getTvGenre()
+
 },[])
   // Usar en path las rutas definidas en el archivo routes.ts
   return (

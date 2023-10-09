@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import Section from "../../components/Section";
 import FilmPosters, { IFilmPosterProps } from "../../components/FilmPosters";
 import env from "../../constants/Enviroments";
-import useGetGenre from "../../hooks/api/useGetGenre";
 import Pager from "../../components/Pager";
 import { useHistory } from "react-router";
 import useQueryParams from "../../hooks/useQueryParams";
@@ -20,18 +19,11 @@ const TvShows = () => {
   const year = queries.get("primary_release_year");
   const { getSortTvShows } = useGetSortTvShows(sortBy, page, year);
   const { getTvShows, isLoadingTv } = useGetTvShows(page ?? "1");
-  const { getGenre, isLoading } = useGetGenre("tv");
   const { tvShows } = useSelector<any, any>((state) => state.tvShows);
-  const { genres } = useSelector<any, any>((state) => state.details);
+  const { tvGenres } = useSelector<any, any>((state) => state.details);
   const { actualPage, totalPages } = useSelector<any, any>(
     (state) => state.pager
   );
-
-  useEffect(() => {
-    if (!isLoading && !tvShows.length && queries.size === 0) {
-      getGenre();
-    }
-  }, [isLoading, queries]);
 
   useEffect(() => {
     if (!isLoadingTv && queries.size === 0 && !tvShows.length) {
@@ -76,7 +68,7 @@ const TvShows = () => {
       <Section>
         <div className="flex flex-wrap grow justify-center">
           {tvShows?.length &&
-            genres.length &&
+            tvGenres.length &&
             filteredTvShows.map(
               (
                 {
@@ -104,9 +96,9 @@ const TvShows = () => {
                   vote_average={vote_average?.toFixed(1)}
                   filmType="tv_shows"
                   genre_ids={
-                    genres?.length &&
+                    tvGenres?.length &&
                     genre_ids?.length &&
-                    genres.filter((e: any) => {
+                    tvGenres.filter((e: any) => {
                       return e.id === genre_ids[0];
                     })[0]?.name
                   }

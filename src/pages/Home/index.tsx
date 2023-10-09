@@ -23,16 +23,20 @@ const Home: React.FC = () => {
     (state) => state.pager
   );
 
-  const { genres } = useSelector<any, any>((state) => state.details);
+  const { movieGenres } = useSelector<any, any>((state) => state.details);
   const history = useHistory()
+  
+  useEffect(() => { 
+    if(queries.size === 0 && !isLoading && !nowPlaying.length) {
+    getNowPlaying();
+    }
+    
+  }, [queries, isLoading]);
 
   useEffect(() => { 
-    if(queries.size === 0 && !isLoading && !nowPlaying.length)
+    if(queries.size !== 0){
     getNowPlaying();
-  }, [queries]);
-
-  useEffect(() => { 
-    getNowPlaying();
+    }
   }, [page]);
 
   useEffect(() => {
@@ -78,7 +82,7 @@ const Home: React.FC = () => {
       <Section>
         <div className="flex flex-wrap justify-center">
           {nowPlaying?.length &&
-            genres?.length &&
+            movieGenres?.length &&
             filteredMovies.map(
               (
                 {
@@ -103,9 +107,9 @@ const Home: React.FC = () => {
                   vote_average={vote_average}
                   filmType="movie"
                   genre_ids={
-                    genres?.length &&
+                    movieGenres?.length &&
                     genre_ids?.length &&
-                    genres.filter((e: any) => {
+                    movieGenres.filter((e: any) => {
                       return e.id === genre_ids[0];
                     })[0]?.name
                   }
