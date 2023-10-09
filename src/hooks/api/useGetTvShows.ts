@@ -3,11 +3,14 @@ import { useDispatch } from "react-redux";
 import env from "../../constants/Enviroments";
 import { addTvShows } from "../../redux/tvShowsSlice";
 import { addActualPage, addTotalPages } from "../../redux/pagerSlice";
+import { useState } from "react";
 
 const useGetTvShows = (actualPage: string) => {
   const dispatch = useDispatch();
+  const [isLoadingTv, setIsLoading] = useState(false)
 
   const getTvShows = async () => {
+    setIsLoading(true)
     const {
       data: { results, total_pages, page },
     } = await axios.get(
@@ -21,8 +24,9 @@ const useGetTvShows = (actualPage: string) => {
     dispatch(addTvShows(results));
     dispatch(addTotalPages(total_pages > 500 ? 500 : total_pages));
     dispatch(addActualPage(page));
+    setIsLoading(false)
   };
-  return { getTvShows };
+  return { getTvShows, isLoadingTv };
 };
 
 export default useGetTvShows;

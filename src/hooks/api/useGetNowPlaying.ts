@@ -3,11 +3,13 @@ import { useDispatch } from 'react-redux';
 import { addNowPlaying } from '../../redux/nowPlayingSlice';
 import { addActualPage, addTotalPages } from '../../redux/pagerSlice';
 import env from '../../constants/Enviroments';
+import { useState } from 'react';
 
 const useGetNowPlaying = (actualPage: string | null) => {
   const dispatch = useDispatch();
-
+const [isLoading, setIsLoading]= useState(false)
   const getNowPlaying = async () => {
+    setIsLoading(true)
     const {
       data: { results, total_pages, page },
     } = await axios.get(
@@ -21,9 +23,10 @@ const useGetNowPlaying = (actualPage: string | null) => {
     dispatch(addActualPage(page));
     dispatch(addTotalPages(total_pages));
     dispatch(addNowPlaying(results));
+    setIsLoading(false)
   };
 
-  return { getNowPlaying };
+  return { getNowPlaying, isLoading };
 };
 
 export default useGetNowPlaying;

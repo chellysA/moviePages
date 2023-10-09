@@ -21,7 +21,6 @@ const getMovies = async () => {
         },
       }
     );
-    console.log(total_pages);
     dispatch(addMovies(results));
     dispatch(addTotalPages(total_pages > 500 ? 500 : total_pages));
     dispatch(addActualPage(page));
