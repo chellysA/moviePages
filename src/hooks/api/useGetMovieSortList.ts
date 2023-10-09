@@ -10,7 +10,6 @@ const useGetMoviesSortList = (
   year?: string | null
 ) => {
   const dispatch = useDispatch();
-
   const getMoviesSortList = async () => {
     const {
       data: { results, total_pages, page },

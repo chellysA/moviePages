@@ -16,7 +16,7 @@ const Movies: React.FC = () => {
   const page = queries.get("page");
   const sortBy = queries.get("sort_by");
   const year = queries.get("primary_release_year");
-  const { getMovies, isLoading } = useGetMovies(page ?? "1");
+  const { getMovies } = useGetMovies(page ?? "1");
   const { getMoviesSortList } = useGetMoviesSortList(sortBy, page, year);
   const { movies } = useSelector<any, any>((state) => state.movies);
   const { movieGenres } = useSelector<any, any>((state) => state.details);
@@ -25,10 +25,8 @@ const Movies: React.FC = () => {
   );
 
   useEffect (() => {
-    if (queries.size === 0 && !isLoading && !movies.length) {
       getMovies();
-    }
-  }, [queries, isLoading]);
+  }, []);
 
   useEffect(() => {
     if (sortBy || year) {
@@ -37,7 +35,7 @@ const Movies: React.FC = () => {
   }, [sortBy, year]);
 
   useEffect(() => {
-    if (sortBy || year) {
+    if (queries.has("sort_by")) {
       getMoviesSortList();
     } else if(queries.size !== 0) {
       getMovies();
@@ -96,10 +94,10 @@ const Movies: React.FC = () => {
                 filmType="movie"
                 genre_ids={
                   movieGenres?.length &&
-                  genre_ids?.length &&
+                  genre_ids?.length ?
                   movieGenres.filter((e: any) => {
                     return e.id === genre_ids[0];
-                  })[0]?.name
+                  })[0]?.name : null
                 }
                 id={id}
               />
