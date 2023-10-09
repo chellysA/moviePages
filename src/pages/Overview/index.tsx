@@ -61,8 +61,9 @@ const Overview = ({ filmType }: any) => {
 
   return (
     <div id="container" className="flex flex-column">
+      <div className="grow">
       <Section>
-        <div className="px-8 text-gray-100 pt-24 grow">
+        <div className="px-8 text-gray-100 pt-24 ">
           <h1 className="">
             {details.original_title ? details.original_title : details.name}
           </h1>
@@ -178,7 +179,7 @@ const Overview = ({ filmType }: any) => {
                           : first_air_date?.slice(0, 4)
                       }
                       vote_average={vote_average?.toFixed(1)}
-                      filmType={filmType === "tv" ? "TvShow" : "Movie"}
+                      filmType={filmType === "tv" ? "tv_shows" : "movie"}
                       genre_ids={
                         filmTypeGenre?.length &&
                         genre_ids?.length &&
@@ -193,6 +194,7 @@ const Overview = ({ filmType }: any) => {
           </div>
         </>
       )}
+      </div>
     </div>
   );
 };

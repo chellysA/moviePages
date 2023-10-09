@@ -43,21 +43,19 @@ const SortMenu = ({ filmType }: ISortMenu) => {
       <div className="bg-gray-10 w-max h-[39px] rounded-sm px-2 py-2 mr-2 text-gray-100 text-[15px]">
         Sort by
         <span>
-          <a
-            href=""
+          <button
             className="no-underline text-principal-200 px-3 hover:text-white"
             onClick={handleDate}
           >
             Date
-          </a>
+          </button>
           ·
-          <a
-            href=""
+          <button
             className="no-underline text-principal-200 px-3 hover:text-white"
             onClick={handleMostVoted}
           >
             Most Voted
-          </a>
+          </button>
         </span>
       </div>
       <input

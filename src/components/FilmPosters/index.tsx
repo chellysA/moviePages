@@ -38,14 +38,14 @@ const FilmPosters = ({
     <>
       <div
         id="filmPoster"
-        className={`relative w-[40%] h-[60%] md:w-[200px] md:h-[300px] mb-[10%] md:mb-[120px] mx-2 md:mx-6`}
+        className={`relative w-[40%] h-[60%] max-w-[200px] md:w-[200px] md:h-[300px] mb-[10%] md:mb-[120px] mx-2 md:mx-6`}
       >
         <div id="nohover" className="">
           <div className="relative">
             <img
               src={poster_path}
               alt=""
-              className="rounded-md min-h-[200px] w-full max-h-[300px]"
+              className="rounded-md h-[300px] max-h-[230px] md:max-h-[300px] md:min-h-[280px] w-full"
             ></img>
             {mobile && (
               <div className="w-full flex justify-center absolute bottom-[8px]">
