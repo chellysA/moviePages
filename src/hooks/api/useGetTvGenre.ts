@@ -10,7 +10,7 @@ const useGetTvGenre = () => {
     setIsLoading(true)
     const { 
       data: { genres },
-    } = await axiosInstance.get(`/genre/tv/list?language=en`, { 
+    } = await axiosInstance.get(`/genre/tv/list`, { 
       
     });
 

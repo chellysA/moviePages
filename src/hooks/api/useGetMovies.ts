@@ -13,7 +13,7 @@ const getMovies = async () => {
     const {
       data: { results, total_pages, page },
     } = await axiosInstance.get(
-      `/trending/movie/day?language=en-US&page=${actualPage}`,
+      `/trending/movie/day?&page=${actualPage}`,
     );
     dispatch(addMovies(results));
     dispatch(addTotalPages(total_pages > 500 ? 500 : total_pages));

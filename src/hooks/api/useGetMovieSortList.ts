@@ -13,7 +13,7 @@ const useGetMoviesSortList = (
     const {
       data: { results, total_pages, page },
     } = await axiosInstance.get(
-      `/discover/movie?include_adult=false&include_video=false&language=en-US&page=${actualPage}${
+      `/discover/movie?include_adult=false&include_video=false&page=${actualPage}${
         year
           ? `&primary_release_year=${year}&sort_by=popularity.desc`
           : `&sort_by=${sortBy}`

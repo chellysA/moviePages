@@ -10,7 +10,7 @@ const useGetMovieGenre = () => {
     setIsLoading(true)
     const { 
       data: { genres },
-    } = await axiosInstance.get(`/genre/movie/list?language=en`, 
+    } = await axiosInstance.get(`/genre/movie/list`, 
     );
     dispatch(addMovieGenres(genres));
     setIsLoading(false)

@@ -9,7 +9,7 @@ const useGetSimilar = (movieId: string | null, filmType: string | null) => {
     const {
       data: { results },
     } = await axiosInstance.get(
-      `/${filmType}/${movieId}/similar?language=en-US&page=1`,
+      `/${filmType}/${movieId}/similar?&page=1`,
     );
     dispatch(addSimilar(results));
   };

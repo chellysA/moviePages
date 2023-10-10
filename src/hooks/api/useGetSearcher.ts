@@ -13,7 +13,7 @@ const useGetSearcher = (
     const {
       data: { results, total_pages, page },
     } = await axiosInstance.get(
-      `/search/movie?query=${movieTitle}&include_adult=false&language=en-US&page=${actualPage}`,
+      `/search/movie?query=${movieTitle}&include_adult=false&page=${actualPage}`,
     );
     dispatch(addActualPage(page));
     dispatch(addTotalPages(total_pages));
