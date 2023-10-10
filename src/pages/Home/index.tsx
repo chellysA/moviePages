@@ -13,6 +13,7 @@ import Pager from "../../components/Pager";
 import { Link, useHistory } from "react-router-dom";
 import useQueryParams from "../../hooks/useQueryParams";
 import env from "../../constants/Enviroments";
+import SearchBar from "../../components/SearchBar";
 
 const Home: React.FC = () => {
   const queries = useQueryParams();
@@ -55,8 +56,10 @@ const Home: React.FC = () => {
 
   const filteredMovies = nowPlaying.filter((e: any) => e.poster_path !== null);
   return (
-    <>
-      <Carousel />
+    <>  
+  
+      <Carousel />  
+      <SearchBar/>
       <Brief />
       <Section>
         <div className="flex flex-col px-8 py-4">

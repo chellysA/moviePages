@@ -6,28 +6,50 @@ import Section from '../../components/Section';
 import env from '../../constants/Enviroments';
 import useQueryParams from '../../hooks/useQueryParams';
 import useGetSearcher from '../../hooks/api/useGetSearcher';
+import Pager from '../../components/Pager';
+import { useHistory } from 'react-router-dom';
 
 const SearchResults = () => {
   const queries = useQueryParams();
+  const history = useHistory()
   const movieTitle = queries.get('q');
-  const { getSearcher } = useGetSearcher(movieTitle);
+  const page = queries.get('page')
+  const { getSearcher } = useGetSearcher(movieTitle, page ?? '1');
   const { searcher } = useSelector<any, any>((state) => state.searcher);
-  const { genres } = useSelector<any, any>((state) => state.details);
+  const { movieGenres } = useSelector<any, any>((state) => state.details);
+  const { totalPages, actualPage } = useSelector<any, any>(
+    (state) => state.pager
+  );
 
   useEffect(() => {
     getSearcher();
-  }, []);
+  }, [page]);
 
+  const handlePage = (newPage: number | boolean) => {
+    const hasPage = queries.has("page");
+    if (hasPage) {
+      queries.set("page", newPage.toString());
+    } else {
+      queries.append("page", newPage.toString());
+    }
+    const newLocation = {
+      pathname: "/search",
+      search: queries.toString(),
+    };
+    history.push(newLocation);
+  };
+
+const filteredMovies = searcher.filter((e: any) => e.poster_path !== null);
   return (
-    <>
+    <div id="container" className='flex flex-col'>
       <Section>
-        <div className="px-8 pt-24">
+        <div className="px-8 pt-24 grow">
           <Subtitle label={`Results for: ${movieTitle}`} />
           <Section>
             <div className="flex flex-wrap justify-center pt-20">
               {searcher.length &&
-                genres.length &&
-                searcher.map(
+                movieGenres.length &&
+                filteredMovies.map(
                   (
                     {
                       poster_path,
@@ -52,9 +74,9 @@ const SearchResults = () => {
                         vote_average={vote_average}
                         filmType="Movie"
                         genre_ids={
-                          genres?.length &&
+                          movieGenres?.length &&
                           genre_ids?.length &&
-                          genres.filter((e: any) => {
+                          movieGenres.filter((e: any) => {
                             return e.id === genre_ids[0];
                           })[0].name
                         }
@@ -67,7 +89,8 @@ const SearchResults = () => {
           </Section>
         </div>
       </Section>
-    </>
+      <Pager actualPages={actualPage} totalPages={totalPages} onClick={handlePage}/>
+    </div>
   );
 };
 
