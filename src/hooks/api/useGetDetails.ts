@@ -7,7 +7,7 @@ const useGetDetails = (movieId: string | null, filmType: string | null) => {
 
   const getDetails = async () => {
     const data = await axiosInstance.get(
-      `/${filmType}/${movieId}?language=en-US`,
+      `/${filmType}/${movieId}`,
     );
     dispatch(addDetails(data.data));
   };

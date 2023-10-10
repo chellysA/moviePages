@@ -9,7 +9,7 @@ const useGetCredits = (movieId: string | null, filmType: string | null) => {
     const {
       data: { cast },
     } = await axiosInstance.get(
-      `/${filmType}/${movieId}/credits?language=en-US`
+      `/${filmType}/${movieId}/credits`
     );
     dispatch(addCredits(cast));
   };

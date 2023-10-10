@@ -11,7 +11,7 @@ const useGetTvShows = (actualPage: string) => {
     const {
       data: { results, total_pages, page },
     } = await axiosInstance.get(
-      `/tv/popular?language=en-US&page=${actualPage}`,
+      `/tv/popular?&page=${actualPage}`,
     );
     dispatch(addTvShows(results));
     dispatch(addTotalPages(total_pages > 500 ? 500 : total_pages));

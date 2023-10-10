@@ -16,8 +16,8 @@ const useGetSortTvShows = (
     } = await axiosInstance.get(
       `/discover/tv?${
         year
-          ? `first_air_date_year=${year}&include_adult=false&include_null_first_air_dates=false&language=en-US&page=${actualPage}&sort_by=popularity.desc`
-          : `&include_adult=false&include_null_first_air_dates=false&language=en-US&page=${actualPage}&sort_by=${sortBy}`
+          ? `first_air_date_year=${year}&include_adult=false&include_null_first_air_dates=false&page=${actualPage}&sort_by=popularity.desc`
+          : `&include_adult=false&include_null_first_air_dates=false&page=${actualPage}&sort_by=${sortBy}`
       }`
     );
 

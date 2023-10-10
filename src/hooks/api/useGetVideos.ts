@@ -9,7 +9,7 @@ const useGetVideos = (movieId: string | null, filmType: string | null) => {
     const {
       data: { results },
     } = await axiosInstance.get(
-      `/${filmType}/${movieId}/videos?language=en-US`,
+      `/${filmType}/${movieId}/videos`,
     );
     dispatch(addVideos(results));
   };

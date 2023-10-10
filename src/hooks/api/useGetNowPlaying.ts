@@ -12,7 +12,7 @@ const [isLoading, setIsLoading]= useState(false)
     const {
       data: { results, total_pages, page },
     } = await axiosInstance.get(
-      `/movie/now_playing?language=en-US&page=${actualPage}`,
+      `/movie/now_playing?&page=${actualPage}`,
     );
     dispatch(addActualPage(page));
     dispatch(addTotalPages(total_pages));
