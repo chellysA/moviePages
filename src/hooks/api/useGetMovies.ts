@@ -1,9 +1,8 @@
-import axios from "axios";
 import { useDispatch } from "react-redux";
-import env from "../../constants/Enviroments";
 import { addMovies } from "../../redux/moviesSlice";
 import { addActualPage, addTotalPages } from "../../redux/pagerSlice";
 import { useState } from "react";
+import axiosInstance from "../../constants/AxiosInstance";
 
 const useGetMovies = (actualPage: string | null) => {
 const dispatch = useDispatch();
@@ -13,13 +12,8 @@ const getMovies = async () => {
   setIsLoading(true)
     const {
       data: { results, total_pages, page },
-    } = await axios.get(
-      `${env.API_URL}/trending/movie/day?language=en-US&page=${actualPage}`,
-      {
-        params: {
-          api_key: env.API_KEY,
-        },
-      }
+    } = await axiosInstance.get(
+      `/trending/movie/day?language=en-US&page=${actualPage}`,
     );
     dispatch(addMovies(results));
     dispatch(addTotalPages(total_pages > 500 ? 500 : total_pages));

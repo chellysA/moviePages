@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useDispatch } from "react-redux";
-import env from "../../constants/Enviroments";
 import { addActualPage, addTotalPages } from "../../redux/pagerSlice";
 import { addTvShows } from "../../redux/tvShowsSlice";
+import axiosInstance from "../../constants/AxiosInstance";
 
 const useGetSortTvShows = (
   sortBy: string | null,
@@ -14,17 +13,12 @@ const useGetSortTvShows = (
   const getSortTvShows = async () => {
     const {
       data: { results, total_pages, page },
-    } = await axios.get(
-      `${env.API_URL}/discover/tv?${
+    } = await axiosInstance.get(
+      `/discover/tv?${
         year
           ? `first_air_date_year=${year}&include_adult=false&include_null_first_air_dates=false&language=en-US&page=${actualPage}&sort_by=popularity.desc`
           : `&include_adult=false&include_null_first_air_dates=false&language=en-US&page=${actualPage}&sort_by=${sortBy}`
-      }`,
-      {
-        params: {
-          api_key: env.API_KEY,
-        },
-      }
+      }`
     );
 
     dispatch(addTvShows(results));

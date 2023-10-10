@@ -1,7 +1,6 @@
 import { addSimilar } from "../../redux/detailsSlice";
-import axios from "axios";
 import { useDispatch } from "react-redux";
-import env from "../../constants/Enviroments";
+import axiosInstance from "../../constants/AxiosInstance";
 
 const useGetSimilar = (movieId: string | null, filmType: string | null) => {
   const dispatch = useDispatch();
@@ -9,13 +8,8 @@ const useGetSimilar = (movieId: string | null, filmType: string | null) => {
   const getSimilar = async () => {
     const {
       data: { results },
-    } = await axios.get(
-      `${env.API_URL}/${filmType}/${movieId}/similar?language=en-US&page=1`,
-      {
-        params: {
-          api_key: env.API_KEY,
-        },
-      }
+    } = await axiosInstance.get(
+      `/${filmType}/${movieId}/similar?language=en-US&page=1`,
     );
     dispatch(addSimilar(results));
   };
