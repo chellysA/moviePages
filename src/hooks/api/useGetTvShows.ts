@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useDispatch } from "react-redux";
-import env from "../../constants/Enviroments";
 import { addTvShows } from "../../redux/tvShowsSlice";
 import { addActualPage, addTotalPages } from "../../redux/pagerSlice";
+import axiosInstance from "../../constants/AxiosInstance";
 
 const useGetTvShows = (actualPage: string) => {
   const dispatch = useDispatch();
@@ -11,13 +10,8 @@ const useGetTvShows = (actualPage: string) => {
 
     const {
       data: { results, total_pages, page },
-    } = await axios.get(
-      `${env.API_URL}/tv/popular?language=en-US&page=${actualPage}`,
-      {
-        params: {
-          api_key: env.API_KEY,
-        },
-      }
+    } = await axiosInstance.get(
+      `/tv/popular?language=en-US&page=${actualPage}`,
     );
     dispatch(addTvShows(results));
     dispatch(addTotalPages(total_pages > 500 ? 500 : total_pages));

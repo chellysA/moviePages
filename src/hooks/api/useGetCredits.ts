@@ -1,7 +1,6 @@
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addCredits } from "../../redux/detailsSlice";
-import env from "../../constants/Enviroments";
+import axiosInstance from "../../constants/AxiosInstance";
 
 const useGetCredits = (movieId: string | null, filmType: string | null) => {
   const dispatch = useDispatch();
@@ -9,13 +8,8 @@ const useGetCredits = (movieId: string | null, filmType: string | null) => {
   const getCredits = async () => {
     const {
       data: { cast },
-    } = await axios.get(
-      `${env.API_URL}/${filmType}/${movieId}/credits?language=en-US`,
-      {
-        params: {
-          api_key: env.API_KEY,
-        },
-      }
+    } = await axiosInstance.get(
+      `/${filmType}/${movieId}/credits?language=en-US`
     );
     dispatch(addCredits(cast));
   };
