@@ -17,7 +17,7 @@ const NavBar: React.FC = () => {
             : `absolute top-[-300px] left-[-300px] transition duration-300 ease-out}`
         }`}
       >
-        <div className="bg-principal-200 w-2/4 h-full p-2">
+        <div className="bg-gray-10 w-2/4 h-full p-2">
           <div>
             <AiOutlineClose
               className="w-[30px] h-[30px] text-gray-50"
@@ -25,31 +25,27 @@ const NavBar: React.FC = () => {
             />
           </div>
           <ul>
-            <StatLink
+            <NavBarItem
               link="/"
               label="Home"
               onClick={() => setShowMenu(false)}
             />
-            <StatLink
+            <NavBarItem
               link="/movies"
               label="Movies"
               onClick={() => setShowMenu(false)}
             />
-            <StatLink
+            <NavBarItem
               link="/tv_shows"
               label="TV Shows"
               onClick={() => setShowMenu(false)}
             />
-            {/*   <StatLink
+            <NavBarItem
               link="/coming_soon"
               label="Comming Soon"
               onClick={() => setShowMenu(false)}
             />
-            <StatLink
-              link="/most_watched"
-              label="Most Watched"
-              onClick={() => setShowMenu(false)}
-      />*/}
+          
           </ul>
         </div>
       </div>

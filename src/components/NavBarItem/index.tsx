@@ -13,7 +13,7 @@ const NavBarItem = ({ link, label, onClick }: INavBarProps) => {
         className="no-underline text-white px-3"
         onClick={onClick}
       >
-        <li className="text-sm hover:text-principal-200 w-max">{label}</li>
+        <li className="text-lg md:text-sm hover:text-principal-200 w-max">{label}</li>
       </NavLink>
     );
   };
