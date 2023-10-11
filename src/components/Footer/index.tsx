@@ -35,6 +35,7 @@ const Footer = () => {
           <NavBarItem link={routes.HOME} label="Home" />
           <NavBarItem link={routes.MOVIES} label="Movies" />
           <NavBarItem link={routes.TV_SHOWS} label="Tv Shows" />
+          <NavBarItem link={routes.COMING_SOON} label="Coming Soon" />
         </div>
       </div>
       <div className="flex"></div>
