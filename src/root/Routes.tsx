@@ -3,12 +3,12 @@ import Home from "../pages/Home";
 import { useEffect, useRef } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import TVShows from "../pages/TvShows";
-import MostWatched from "../pages/MostWatched";
 import CommingSoon from "../pages/CommingSoon";
 import SearchResults from "../pages/SearchResults";
 import Overview from "../pages/Overview";
 import useGetMovieGenre from "../hooks/api/useGetMovieGenre";
 import useGetTvGenre from "../hooks/api/useGetTvGenre";
+import routes from "../constants/Routes";
 
 const Routes: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -25,24 +25,21 @@ getMovieGenre()
 getTvGenre()
 
 },[])
-  // Usar en path las rutas definidas en el archivo routes.ts
+
   return (
     <div ref={scrollRef}>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={routes.HOME}>
           <Home />
         </Route>
-        <Route exact path="/movies">
+        <Route exact path={routes.MOVIES}>
           <Movies />
         </Route>
-        <Route exact path="/tv_shows">
+        <Route exact path={routes.TV_SHOWS}>
           <TVShows />
         </Route>
-        <Route exact path="/comming_soon">
+        <Route exact path={routes.COMING_SOON}>
           <CommingSoon />
-        </Route>
-        <Route exact path="/most_watched">
-          <MostWatched />
         </Route>
         <Route exact path="/movie/:id">
           <Overview filmType="movie" />
@@ -50,7 +47,7 @@ getTvGenre()
         <Route exact path="/tv_shows/:id">
           <Overview filmType="tv" />
         </Route>
-        <Route path="/search">
+        <Route path={routes.SEARCH_RESULTS}>
           <SearchResults />
         </Route>
       </Switch>

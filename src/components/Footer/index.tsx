@@ -1,21 +1,9 @@
 import React from "react";
 import logo from "../../assets/logo.png";
 import { FaLinkedin } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import NavBarItem from "../NavBarItem";
+import routes from "../../constants/Routes";
 
-interface IStatLink {
-  link: string;
-  label: string;
-}
-const StatLink = ({ link, label }: IStatLink) => {
-  return (
-    <NavLink to={link} className="no-underline text-white px-3 ">
-      <li className="text-sm hover:text-principal-200 w-max list-none">
-        {label}
-      </li>
-    </NavLink>
-  );
-};
 
 const Footer = () => {
   return (
@@ -44,10 +32,9 @@ const Footer = () => {
         </div>
         <div className="ml-8 md:ml-14">
           <p className="text-white font-bold mt-4">Links</p>
-          <StatLink link="/" label="Home" />
-          <StatLink link="/movies" label="Movies" />
-          <StatLink link="/tv_shows" label="Tv Shows" />
-          {/*<StatLink link="/most-watched" label="Most Watched" />*/}
+          <NavBarItem link={routes.HOME} label="Home" />
+          <NavBarItem link={routes.MOVIES} label="Movies" />
+          <NavBarItem link={routes.TV_SHOWS} label="Tv Shows" />
         </div>
       </div>
       <div className="flex"></div>

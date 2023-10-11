@@ -9,6 +9,7 @@ import FilmPosters, { IFilmPosterProps } from "../../components/FilmPosters";
 import env from "../../constants/Enviroments";
 import { useSelector } from "react-redux";
 import useGetMoviesSortList from "../../hooks/api/useGetMovieSortList";
+import routes from "../../constants/Routes";
 
 const Movies: React.FC = () => {
   const queries = useQueryParams();
@@ -52,7 +53,7 @@ const Movies: React.FC = () => {
       queries.append("page", newPage.toString());
     }
     const newLocation = {
-      pathname: "/movies",
+      pathname: `${routes.MOVIES}`,
       search: queries.toString(),
     };
     history.push(newLocation);

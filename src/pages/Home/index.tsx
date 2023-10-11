@@ -14,6 +14,7 @@ import { Link, useHistory } from "react-router-dom";
 import useQueryParams from "../../hooks/useQueryParams";
 import env from "../../constants/Enviroments";
 import SearchBar from "../../components/SearchBar";
+import routes from "../../constants/Routes";
 
 const Home: React.FC = () => {
   const queries = useQueryParams();
@@ -48,7 +49,7 @@ const Home: React.FC = () => {
 
   const handlePage = (newPage: number | boolean) => {
     const newLocation = {
-      pathname: "/",
+      pathname: `${routes.HOME}`,
       search: `?page=${newPage}`,
     };
     history.push(newLocation);

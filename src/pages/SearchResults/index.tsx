@@ -8,6 +8,7 @@ import useQueryParams from '../../hooks/useQueryParams';
 import useGetSearcher from '../../hooks/api/useGetSearcher';
 import Pager from '../../components/Pager';
 import { useHistory } from 'react-router-dom';
+import routes from '../../constants/Routes';
 
 const SearchResults = () => {
   const queries = useQueryParams();
@@ -33,7 +34,7 @@ const SearchResults = () => {
       queries.append("page", newPage.toString());
     }
     const newLocation = {
-      pathname: "/search",
+      pathname: `${routes.SEARCH_RESULTS}`,
       search: queries.toString(),
     };
     history.push(newLocation);
