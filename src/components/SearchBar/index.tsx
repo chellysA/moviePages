@@ -3,6 +3,7 @@ import useGetSearcher from "../../hooks/api/useGetSearcher";
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
+import routes from "../../constants/Routes";
 
 const SearchBar = () => {
   const queries = useQueryParams();
@@ -22,7 +23,7 @@ const SearchBar = () => {
     setMovieSearch(e.target.value)
     if (e.keyCode === 13 && e.target.value) {
       const newLocation = {
-        pathname: "/search",
+        pathname: `${routes.SEARCH_RESULTS}`,
         search: `?q=${e.target.value}`,
       };
       history.push(newLocation);
@@ -32,7 +33,7 @@ const SearchBar = () => {
   const handleOnClickSearch = () => {
     if (movieSearch) {
       const newLocation = {
-        pathname: "/search",
+        pathname: `${routes.SEARCH_RESULTS}`,
         search: `?q=${movieSearch}`,
       };
       history.push(newLocation);

@@ -10,6 +10,7 @@ import Pager from "../../components/Pager";
 import { useHistory } from "react-router";
 import useQueryParams from "../../hooks/useQueryParams";
 import useGetSortTvShows from "../../hooks/api/useGetSortTvShows";
+import routes from "../../constants/Routes";
 
 const TvShows = () => {
   const history = useHistory();
@@ -53,7 +54,7 @@ const TvShows = () => {
       queries.append("page", newPage.toString());
     }
     const newLocation = {
-      pathname: "/tv_shows",
+      pathname: `${routes.TV_SHOWS}`,
       search: queries.toString(),
     };
     history.push(newLocation);
