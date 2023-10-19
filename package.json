@@ -16,6 +16,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.9",
+    "aos": "^2.3.4",
     "axios": "^1.4.0",
     "babel-plugin-macros": "^3.1.0",
     "bootstrap": "^5.3.1",
@@ -30,6 +31,7 @@
     "typescript": "^5.1.6"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.6",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@types/react-router-dom": "^5.3.3",

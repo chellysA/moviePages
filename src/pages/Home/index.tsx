@@ -58,7 +58,6 @@ const Home: React.FC = () => {
   const filteredMovies = nowPlaying.filter((e: any) => e.poster_path !== null);
   return (
     <>  
-  
       <Carousel />  
       <SearchBar/>
       <Brief />

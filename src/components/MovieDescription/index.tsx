@@ -20,7 +20,9 @@ const MovieDescription = ({
         <p className="pr-2">Genre: {genre_ids} </p>
       </div>
       <p className="text-gray-50 w-3/4 mb-4">{overview}</p>
-      <Link to={`/movie/${id}`} className="no-underline flex w-max">
+      <span className='absolute left-8 bottom-2 animate-[ping_2s_ease-in-out_infinite] h-[39px] w-[122px] rounded-full bg-principal-200 opacity-40'></span>
+      <Link to={`/movie/${id}`} className=" no-underline flex w-max">
+        
         <Button
           icon={<BsFillPlayFill className="h-[30px] w-[30px]" />}
           label="Whatch now"

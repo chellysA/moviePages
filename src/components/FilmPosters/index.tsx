@@ -37,10 +37,11 @@ const FilmPosters = ({
   return (
     <>
       <div
+      data-aos="fade-up"
         id="filmPoster"
         className={`relative w-[40%] h-[60%] max-w-[200px] md:w-[200px] md:h-[300px] mb-[10%] md:mb-[120px] mx-2 md:mx-6`}
       >
-        <div id="nohover" className="">
+        <div id="nohover" >
           <div className="relative">
             <img
               src={poster_path}
